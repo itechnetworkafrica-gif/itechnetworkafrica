@@ -13,7 +13,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center mb-16 text-center">
           <div className="flex items-center gap-6 mb-6">
-            <img src={gotecxLogo} alt="Gotecx" className="h-10 w-auto brightness-0 invert" />
+            <img src={gotecxLogo} alt="Gotecx" className="h-10 w-auto" />
             <div className="h-10 w-px bg-white/20"></div>
             <img src={itechLogo} alt="iTech Network Africa" className="h-12 w-auto" />
           </div>
