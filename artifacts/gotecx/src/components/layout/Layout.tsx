@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useLocation } from "wouter";
-import { MessageCircle } from "lucide-react";
+import { MessageSquare } from "lucide-react";
+import { Chatbot } from "../Chatbot";
+import { ScrollToTop } from "../ScrollToTop";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -19,16 +21,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </main>
       <Footer />
       
+      <ScrollToTop />
+      <Chatbot />
+      
       {/* WhatsApp Button */}
       <a
         href="https://wa.me/231776836689"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:bg-[#1ebd5a] hover:scale-110 transition-all duration-300 flex items-center justify-center group"
+        className="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:bg-[#1ebd5a] hover:scale-110 transition-all duration-300 flex items-center justify-center group"
       >
-        <MessageCircle className="w-6 h-6" />
+        <MessageSquare className="w-6 h-6" />
         <span className="absolute right-full mr-4 bg-black/80 text-white text-xs font-semibold py-1 px-2 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-          Chat with us
+          WhatsApp
         </span>
       </a>
     </div>

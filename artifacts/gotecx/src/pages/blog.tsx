@@ -1,30 +1,32 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Calendar, User, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Blog() {
   const posts = [
-    { category: "Engineering", title: "Scaling PostgreSQL for Global Enterprise POS Systems", date: "Oct 12, 2025" },
-    { category: "AI & Automation", title: "Predictive Analytics in Retail: Moving Beyond Historical Data", date: "Oct 05, 2025" },
-    { category: "Cybersecurity", title: "Zero Trust Architecture Implementation Guide for Financial Institutions", date: "Sep 28, 2025" },
-    { category: "Company News", title: "Gotecx and iTech Network Africa Announce Expanded Partnership", date: "Sep 15, 2025" },
-    { category: "Cloud Infrastructure", title: "Multi-Region Kubernetes Deployments: Lessons Learned", date: "Sep 02, 2025" },
-    { category: "Digital Transformation", title: "Why Legacy Migration Projects Fail (And How to Ensure Yours Succeeds)", date: "Aug 20, 2025" },
+    { title: "The Future of AI in Enterprise Business", category: "Technology", date: "Oct 12, 2026", author: "Kerkulah Kerkulah" },
+    { title: "Scaling Operations with Gotecx POS", category: "Product", date: "Sep 28, 2026", author: "Product Team" },
+    { title: "Digital Transformation in Emerging Markets", category: "Industry Insight", date: "Sep 15, 2026", author: "Strategy Team" },
+    { title: "Cybersecurity Best Practices for 2027", category: "Security", date: "Sep 02, 2026", author: "Security Operations" },
+    { title: "How Cloud Infrastructure is Changing Retail", category: "Cloud", date: "Aug 20, 2026", author: "Engineering Team" },
+    { title: "Building a Global Ecosystem from Liberia", category: "Company News", date: "Aug 05, 2026", author: "Leadership" }
   ];
 
   return (
-    <div className="w-full">
-      <section className="py-24 bg-[#1A2035] text-white">
+    <div className="w-full bg-background">
+      <section className="py-24 bg-[#0D1421] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Engineering Blog</h1>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Deep technical dives, industry analysis, and product updates from the Gotecx team.
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Gotecx Blog</h1>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Insights, updates, and perspectives on the future of enterprise technology.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-24 bg-background">
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, i) => (
@@ -33,15 +35,25 @@ export default function Blog() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group cursor-pointer"
+                transition={{ delay: i * 0.05 }}
+                className="bg-card border border-border rounded-2xl overflow-hidden group hover:shadow-xl hover:border-primary/50 transition-all flex flex-col cursor-pointer"
               >
-                <div className="aspect-video bg-card border border-border rounded-2xl mb-6 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/20 transition-colors"></div>
+                <div className="aspect-[16/9] bg-muted relative overflow-hidden">
+                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors"></div>
+                  <div className="absolute top-4 left-4 bg-background text-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    {post.category}
+                  </div>
                 </div>
-                <div className="text-sm font-bold text-primary mb-3 uppercase tracking-wider">{post.category}</div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
-                <div className="text-sm text-muted-foreground">{post.date}</div>
+                <div className="p-8 flex flex-col flex-1">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1"><Calendar className="w-4 h-4 text-primary/70" /> {post.date}</span>
+                    <span className="flex items-center gap-1"><User className="w-4 h-4 text-primary/70" /> {post.author}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-6 flex-1 group-hover:text-primary transition-colors leading-snug">{post.title}</h3>
+                  <div className="inline-flex items-center font-bold text-primary group-hover:gap-2 transition-all">
+                    Read Article <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

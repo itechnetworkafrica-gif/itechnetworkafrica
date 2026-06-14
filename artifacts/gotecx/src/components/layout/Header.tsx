@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "wouter";
-import { Menu, X, Search, Globe, Moon, Sun, ChevronDown } from "lucide-react";
+import { 
+  Menu, X, Search, Globe, Moon, Sun, ChevronDown, 
+  CreditCard, Briefcase, LayoutGrid, Cpu, Cloud, Shield, 
+  BarChart3, Globe2, Users, Building2 
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import gotecxLogo from "@assets/file_0000000069c471f4b1db489ae2ff9c8b_1781449096936.png";
+import itechLogo from "@assets/file_000000007fdc72438ace4a48fe9c5139_1781449108190.png";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Header() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const { theme, setTheme } = useTheme();
+
+  const toggleMenu = (menu: string) => {
+    setActiveMenu(activeMenu === menu ? null : menu);
+  };
+
+  const closeMenus = () => {
+    setActiveMenu(null);
+    setIsMobileOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between relative">
+        <Link href="/" onClick={closeMenus} className="flex items-center gap-2 group relative z-50">
           <div className="flex flex-col">
             <img src={gotecxLogo} alt="Gotecx Logo" className="h-10 w-auto" />
             <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mt-1">Powered by iTech Network Africa</span>
@@ -20,98 +36,177 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden xl:flex items-center gap-8 font-medium text-sm">
+        <nav className="hidden xl:flex items-center gap-6 font-medium text-sm">
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <Link href="/about" className="hover:text-primary transition-colors">About</Link>
-          <div className="relative group py-4">
-            <span className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">Solutions <ChevronDown className="w-4 h-4" /></span>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-card border border-border rounded-xl shadow-2xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all grid grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xs font-bold text-muted-foreground uppercase mb-4 tracking-wider">Business Solutions</h3>
-                <div className="flex flex-col gap-3">
-                  <Link href="/solutions#enterprise" className="hover:text-primary">Enterprise</Link>
-                  <Link href="/solutions#financial" className="hover:text-primary">Financial Services</Link>
-                  <Link href="/solutions#retail" className="hover:text-primary">Retail & Commerce</Link>
-                  <Link href="/solutions#healthcare" className="hover:text-primary">Healthcare</Link>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs font-bold text-muted-foreground uppercase mb-4 tracking-wider">Technology Solutions</h3>
-                <div className="flex flex-col gap-3">
-                  <Link href="/solutions#ai" className="hover:text-primary">AI & Automation</Link>
-                  <Link href="/solutions#cloud" className="hover:text-primary">Cloud Infrastructure</Link>
-                  <Link href="/solutions#cybersecurity" className="hover:text-primary">Cybersecurity</Link>
-                  <Link href="/solutions#analytics" className="hover:text-primary">Data Analytics</Link>
-                </div>
-              </div>
-            </div>
+          
+          <div className="relative">
+            <button onClick={() => toggleMenu("solutions")} className="flex items-center gap-1 hover:text-primary transition-colors py-4">
+              Solutions <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === "solutions" ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {activeMenu === "solutions" && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-card border border-border rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-4"
+                >
+                  <Link href="/solutions#enterprise" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted transition-colors">
+                    <div className="bg-[#0D1421] p-3 rounded-xl"><Building2 className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-foreground">Enterprise Solutions</h4>
+                      <p className="text-xs text-muted-foreground mt-1">Scalable platforms for large organizations</p>
+                    </div>
+                  </Link>
+                  <Link href="/solutions#cloud" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted transition-colors">
+                    <div className="bg-[#0D1421] p-3 rounded-xl"><Cloud className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-foreground">Cloud Infrastructure</h4>
+                      <p className="text-xs text-muted-foreground mt-1">Secure and reliable hosting services</p>
+                    </div>
+                  </Link>
+                  <Link href="/solutions#ai" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted transition-colors">
+                    <div className="bg-[#0D1421] p-3 rounded-xl"><Cpu className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-foreground">AI & Automation</h4>
+                      <p className="text-xs text-muted-foreground mt-1">Intelligent workflows and analytics</p>
+                    </div>
+                  </Link>
+                  <Link href="/solutions#cybersecurity" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted transition-colors">
+                    <div className="bg-[#0D1421] p-3 rounded-xl"><Shield className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-foreground">Cybersecurity</h4>
+                      <p className="text-xs text-muted-foreground mt-1">Advanced protection for digital assets</p>
+                    </div>
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <div className="relative group py-4">
-            <span className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">Products <ChevronDown className="w-4 h-4" /></span>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-[400px] bg-card border border-border rounded-xl shadow-2xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-              <Link href="/products" className="block p-4 rounded-lg bg-primary/5 border border-primary/20 hover:bg-primary/10 transition-colors mb-4">
-                <div className="font-bold text-primary mb-1">Gotecx POS</div>
-                <div className="text-xs text-muted-foreground">Flagship point of sale system</div>
-              </Link>
-              <h3 className="text-xs font-bold text-muted-foreground uppercase mb-3 tracking-wider">Future Roadmap</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground">
-                <span>Gotecx AI</span>
-                <span>Gotecx Analytics</span>
-                <span>Gotecx ERP</span>
-                <span>Gotecx Cloud</span>
-              </div>
-            </div>
+
+          <div className="relative">
+            <button onClick={() => toggleMenu("products")} className="flex items-center gap-1 hover:text-primary transition-colors py-4">
+              Products <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === "products" ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {activeMenu === "products" && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 w-[400px] bg-card border border-border rounded-2xl shadow-2xl p-6"
+                >
+                  <Link href="/products" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors mb-4">
+                    <div className="bg-[#0D1421] p-3 rounded-xl"><CreditCard className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-primary">Gotecx POS</h4>
+                      <p className="text-xs text-muted-foreground mt-1">Flagship point-of-sale & business management platform</p>
+                    </div>
+                  </Link>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 cursor-not-allowed">
+                      <Cpu className="w-5 h-5 text-muted-foreground" />
+                      <div className="flex flex-col"><span className="text-sm font-medium text-muted-foreground">Gotecx AI</span><span className="text-[10px] text-muted-foreground uppercase">Coming Soon</span></div>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 cursor-not-allowed">
+                      <BarChart3 className="w-5 h-5 text-muted-foreground" />
+                      <div className="flex flex-col"><span className="text-sm font-medium text-muted-foreground">Analytics</span><span className="text-[10px] text-muted-foreground uppercase">Coming Soon</span></div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <div className="relative group py-4">
-            <span className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">Services <ChevronDown className="w-4 h-4" /></span>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-card border border-border rounded-xl shadow-2xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all grid grid-cols-3 gap-6">
-              <div className="flex flex-col gap-3">
-                <Link href="/services#web" className="hover:text-primary">Web Development</Link>
-                <Link href="/services#mobile" className="hover:text-primary">Mobile Apps</Link>
-                <Link href="/services#software" className="hover:text-primary">Software Dev</Link>
-                <Link href="/services#cloud" className="hover:text-primary">Cloud Services</Link>
-              </div>
-              <div className="flex flex-col gap-3">
-                <Link href="/services#uiux" className="hover:text-primary">UI/UX Design</Link>
-                <Link href="/services#branding" className="hover:text-primary">Branding</Link>
-                <Link href="/services#marketing" className="hover:text-primary">Digital Marketing</Link>
-                <Link href="/services#cybersecurity" className="hover:text-primary">Cybersecurity</Link>
-              </div>
-              <div className="flex flex-col gap-3">
-                <Link href="/services#consulting" className="hover:text-primary">IT Consulting</Link>
-                <Link href="/services#enterprise" className="hover:text-primary">Enterprise Tech</Link>
-                <Link href="/services#automation" className="hover:text-primary">Automation</Link>
-                <Link href="/services#ai" className="hover:text-primary">AI Integration</Link>
-              </div>
-            </div>
+
+          <div className="relative">
+            <button onClick={() => toggleMenu("services")} className="flex items-center gap-1 hover:text-primary transition-colors py-4">
+              Services <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === "services" ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {activeMenu === "services" && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 w-[500px] bg-card border border-border rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-4"
+                >
+                  <Link href="/services#software" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted transition-colors">
+                    <div className="bg-[#0D1421] p-3 rounded-xl"><LayoutGrid className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-foreground">Software Dev</h4>
+                      <p className="text-xs text-muted-foreground mt-1">Custom applications and tools</p>
+                    </div>
+                  </Link>
+                  <Link href="/services#consulting" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted transition-colors">
+                    <div className="bg-[#0D1421] p-3 rounded-xl"><Briefcase className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-foreground">IT Consulting</h4>
+                      <p className="text-xs text-muted-foreground mt-1">Expert technology guidance</p>
+                    </div>
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <Link href="/industries" className="hover:text-primary transition-colors">Industries</Link>
-          <div className="relative group py-4">
-            <span className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">Company <ChevronDown className="w-4 h-4" /></span>
-            <div className="absolute top-full left-0 w-[200px] bg-card border border-border rounded-xl shadow-2xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col gap-3">
-              <Link href="/leadership" className="hover:text-primary">Leadership</Link>
-              <Link href="/careers" className="hover:text-primary">Careers</Link>
-              <Link href="/partners" className="hover:text-primary">Partners</Link>
-              <Link href="/investors" className="hover:text-primary">Investors</Link>
-              <Link href="/media-center" className="hover:text-primary">Media Center</Link>
-              <Link href="/events" className="hover:text-primary">Events</Link>
-              <Link href="/success-stories" className="hover:text-primary">Success Stories</Link>
-            </div>
+
+          <Link href="/industries" onClick={closeMenus} className="hover:text-primary transition-colors">Industries</Link>
+          
+          <div className="relative">
+            <button onClick={() => toggleMenu("company")} className="flex items-center gap-1 hover:text-primary transition-colors py-4">
+              Company <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === "company" ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {activeMenu === "company" && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 w-[300px] bg-card border border-border rounded-2xl shadow-2xl p-4 flex flex-col gap-2"
+                >
+                  <Link href="/leadership" onClick={closeMenus} className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted transition-colors">
+                    <Users className="w-5 h-5 text-primary" />
+                    <span className="font-medium">Leadership</span>
+                  </Link>
+                  <Link href="/about" onClick={closeMenus} className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted transition-colors">
+                    <Building2 className="w-5 h-5 text-primary" />
+                    <span className="font-medium">About Gotecx</span>
+                  </Link>
+                  <Link href="/careers" onClick={closeMenus} className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted transition-colors">
+                    <Briefcase className="w-5 h-5 text-primary" />
+                    <span className="font-medium">Careers</span>
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <div className="relative group py-4">
-            <span className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">Resources <ChevronDown className="w-4 h-4" /></span>
-            <div className="absolute top-full left-0 w-[200px] bg-card border border-border rounded-xl shadow-2xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col gap-3">
-              <Link href="/blog" className="hover:text-primary">Blog</Link>
-              <Link href="/docs" className="hover:text-primary">Documentation</Link>
-              <Link href="/faqs" className="hover:text-primary">FAQs</Link>
-              <Link href="/support" className="hover:text-primary">Support Center</Link>
-            </div>
+
+          <div className="relative">
+            <button onClick={() => toggleMenu("resources")} className="flex items-center gap-1 hover:text-primary transition-colors py-4">
+              Resources <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === "resources" ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {activeMenu === "resources" && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute top-full left-0 w-[200px] bg-card border border-border rounded-2xl shadow-2xl p-4 flex flex-col gap-2"
+                >
+                  <Link href="/blog" onClick={closeMenus} className="p-3 rounded-xl hover:bg-muted transition-colors font-medium">Blog</Link>
+                  <Link href="/docs" onClick={closeMenus} className="p-3 rounded-xl hover:bg-muted transition-colors font-medium">Documentation</Link>
+                  <Link href="/faqs" onClick={closeMenus} className="p-3 rounded-xl hover:bg-muted transition-colors font-medium">FAQs</Link>
+                  <Link href="/support" onClick={closeMenus} className="p-3 rounded-xl hover:bg-muted transition-colors font-medium">Support Center</Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+
+          <Link href="/contact" onClick={closeMenus} className="hover:text-primary transition-colors">Contact</Link>
         </nav>
 
         {/* Right Actions */}
-        <div className="hidden xl:flex items-center gap-4">
+        <div className="hidden xl:flex items-center gap-4 relative z-50">
           <button className="text-muted-foreground hover:text-foreground transition-colors">
             <Search className="w-5 h-5" />
           </button>
@@ -126,29 +221,97 @@ export function Header() {
           </button>
           <Link href="/contact">
             <Button variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full px-6">
-              Request Demo
+              Access Client Portal
             </Button>
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="xl:hidden text-foreground" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <button className="xl:hidden text-foreground relative z-50" onClick={() => setIsMobileOpen(true)}>
+          <Menu className="w-6 h-6" />
         </button>
       </div>
 
-      {/* Mobile Nav */}
-      {isOpen && (
-        <div className="xl:hidden bg-background border-t border-border p-4 absolute top-full left-0 w-full flex flex-col gap-4 shadow-xl">
-          <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link href="/about" onClick={() => setIsOpen(false)}>About</Link>
-          <Link href="/solutions" onClick={() => setIsOpen(false)}>Solutions</Link>
-          <Link href="/products" onClick={() => setIsOpen(false)}>Products</Link>
-          <Link href="/services" onClick={() => setIsOpen(false)}>Services</Link>
-          <Link href="/industries" onClick={() => setIsOpen(false)}>Industries</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
-        </div>
-      )}
+      {/* Mobile Nav Overlay */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeMenus}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 xl:hidden"
+            />
+            <motion.div 
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-[85vw] max-w-sm bg-[#0D1421] z-50 flex flex-col shadow-2xl xl:hidden overflow-y-auto"
+            >
+              <div className="p-6 flex items-center justify-between border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center p-1.5">
+                    <img src={itechLogo} alt="iTech" className="w-full h-auto" />
+                  </div>
+                  <span className="font-bold text-primary tracking-wide">iTechNetwork</span>
+                </div>
+                <button onClick={closeMenus} className="text-white/70 hover:text-white bg-white/5 p-2 rounded-full">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="p-6 flex-1 flex flex-col gap-8">
+                <div>
+                  <h4 className="text-[10px] font-bold text-white/50 uppercase tracking-widest mb-4">Products</h4>
+                  <Link href="/products" onClick={closeMenus} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                    <div className="bg-[#1A2535] p-3 rounded-full"><CreditCard className="w-6 h-6 text-primary" /></div>
+                    <div>
+                      <h4 className="font-bold text-white">Gotecx POS</h4>
+                      <p className="text-xs text-white/50 mt-1">Smart point-of-sale system</p>
+                    </div>
+                  </Link>
+                </div>
+
+                <div>
+                  <h4 className="text-[10px] font-bold text-white/50 uppercase tracking-widest mb-4">Company</h4>
+                  <div className="flex flex-col gap-3">
+                    <Link href="/services" onClick={closeMenus} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                      <div className="bg-[#1A2535] p-2.5 rounded-full"><Briefcase className="w-5 h-5 text-primary" /></div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm">Services</h4>
+                        <p className="text-xs text-white/50 mt-0.5">Explore our solutions</p>
+                      </div>
+                    </Link>
+                    <Link href="/contact" onClick={closeMenus} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                      <div className="bg-[#1A2535] p-2.5 rounded-full"><Globe2 className="w-5 h-5 text-primary" /></div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm">Contact & Pricing</h4>
+                        <p className="text-xs text-white/50 mt-0.5">Get a customized quote</p>
+                      </div>
+                    </Link>
+                    <Link href="/leadership" onClick={closeMenus} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                      <div className="bg-[#1A2535] p-2.5 rounded-full"><Users className="w-5 h-5 text-primary" /></div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm">Leadership</h4>
+                        <p className="text-xs text-white/50 mt-0.5">Meet our executives</p>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="mt-auto pt-8">
+                  <Link href="/contact" onClick={closeMenus} className="text-white hover:text-primary font-medium mb-6 block px-2">Contact Support</Link>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-14 text-lg font-bold">
+                    Access Client Portal
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

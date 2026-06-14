@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { HelpCircle } from "lucide-react";
 
 export default function Faqs() {
   const faqs = [
@@ -27,10 +28,13 @@ export default function Faqs() {
   ];
 
   return (
-    <div className="w-full">
-      <section className="py-24 bg-[#1A2035] text-white text-center">
+    <div className="w-full bg-background">
+      <section className="py-24 bg-[#0D1421] text-white text-center">
         <div className="container mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <HelpCircle className="w-8 h-8 text-primary" />
+            </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Frequently Asked Questions</h1>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
               Answers to common questions about our platform, services, and technology.
@@ -39,13 +43,13 @@ export default function Faqs() {
         </div>
       </section>
 
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <Accordion type="single" collapsible className="w-full space-y-4">
+      <section className="py-32">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Accordion type="single" collapsible className="w-full space-y-6">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`item-${i}`} className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary transition-colors">
-                <AccordionTrigger className="text-lg font-bold hover:no-underline py-6 text-left">{faq.q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 text-base leading-relaxed">
+              <AccordionItem key={i} value={`item-${i}`} className="bg-card border border-border rounded-2xl px-8 shadow-sm data-[state=open]:border-primary data-[state=open]:shadow-md transition-all">
+                <AccordionTrigger className="text-xl font-bold hover:no-underline py-8 text-left gap-6">{faq.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pb-8 text-lg leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

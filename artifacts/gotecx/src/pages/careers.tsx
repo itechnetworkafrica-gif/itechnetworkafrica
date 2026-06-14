@@ -10,12 +10,12 @@ export default function Careers() {
     { title: "Enterprise Account Executive", dept: "Sales", location: "London, UK", type: "Full-time" },
     { title: "Product Marketing Manager", dept: "Marketing", location: "Remote (US)", type: "Full-time" },
     { title: "Security Operations Analyst", dept: "Security", location: "Remote (Global)", type: "Full-time" },
-    { title: "UX/UI Lead Designer", dept: "Design", location: "Berlin, UK", type: "Full-time" },
+    { title: "UX/UI Lead Designer", dept: "Design", location: "Berlin, DE", type: "Full-time" },
   ];
 
   return (
-    <div className="w-full">
-      <section className="py-24 bg-[#1A2035] text-white text-center">
+    <div className="w-full bg-background">
+      <section className="py-24 bg-[#0D1421] text-white text-center">
         <div className="container mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Build the Future of Enterprise Tech</h1>
@@ -26,14 +26,14 @@ export default function Careers() {
         </div>
       </section>
 
-      <section className="py-24 bg-background">
+      <section className="py-24">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">Open Positions</h2>
             <p className="text-muted-foreground text-lg">Find your next role at Gotecx.</p>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             {jobs.map((job, i) => (
               <motion.div 
                 key={i}
@@ -41,27 +41,27 @@ export default function Careers() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="group p-6 bg-card border border-border rounded-xl hover:border-primary transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer"
+                className="group p-8 bg-card border border-border rounded-2xl hover:border-primary transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer shadow-sm"
               >
                 <div>
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{job.title}</h3>
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1"><Briefcase className="w-4 h-4" /> {job.dept}</span>
-                    <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {job.location}</span>
-                    <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {job.type}</span>
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{job.title}</h3>
+                  <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-2 bg-background px-3 py-1.5 rounded-lg border border-border"><Briefcase className="w-4 h-4 text-primary" /> {job.dept}</span>
+                    <span className="flex items-center gap-2 bg-background px-3 py-1.5 rounded-lg border border-border"><MapPin className="w-4 h-4 text-primary" /> {job.location}</span>
+                    <span className="flex items-center gap-2 bg-background px-3 py-1.5 rounded-lg border border-border"><Clock className="w-4 h-4 text-primary" /> {job.type}</span>
                   </div>
                 </div>
-                <Button variant="outline" className="shrink-0 rounded-full group-hover:bg-primary group-hover:text-white transition-colors">
+                <Button size="lg" variant="outline" className="shrink-0 rounded-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all font-bold">
                   Apply Now <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-20 p-12 bg-card border border-border rounded-3xl text-center">
-            <h3 className="text-2xl font-bold mb-4">Don't see a fit?</h3>
-            <p className="text-muted-foreground mb-8">We are always looking for exceptional talent to join our mission.</p>
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90">Send Us Your Resume</Button>
+          <div className="mt-24 p-16 bg-[#1A2535] border border-border rounded-[2rem] text-center text-white">
+            <h3 className="text-3xl font-bold mb-6">Don't see a perfect fit?</h3>
+            <p className="text-white/70 mb-10 text-lg max-w-2xl mx-auto">We are always looking for exceptional talent to join our mission. Send us your resume and we'll keep you in mind for future opportunities.</p>
+            <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 font-bold px-10 h-14 text-lg">Send Us Your Resume</Button>
           </div>
         </div>
       </section>

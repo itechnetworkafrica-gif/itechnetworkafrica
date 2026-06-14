@@ -18,7 +18,7 @@ export default function Industries() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -30,31 +30,31 @@ export default function Industries() {
         </div>
       </section>
 
-      <section className="py-24 bg-background">
+      <section className="py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {industries.map((ind, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
                 id={ind.id}
-                className="flex flex-col sm:flex-row gap-6 p-8 rounded-2xl bg-card border border-border hover:shadow-xl transition-shadow group"
+                className="flex flex-col sm:flex-row gap-6 p-8 rounded-3xl bg-card border border-border hover:shadow-xl hover:border-primary/50 transition-all group"
               >
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
-                  <ind.icon className="w-8 h-8" />
+                <div className="w-20 h-20 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <ind.icon className="w-10 h-10" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-2xl font-bold mb-3">{ind.name}</h3>
-                  <p className="text-muted-foreground mb-6">{ind.desc}</p>
-                  <div className="space-y-2 mb-6">
-                    <div className="text-sm"><span className="font-semibold text-foreground">Challenge:</span> Legacy systems slowing growth</div>
-                    <div className="text-sm"><span className="font-semibold text-foreground">Gotecx Solution:</span> Modern cloud infrastructure & automation</div>
+                  <p className="text-muted-foreground mb-6 text-lg">{ind.desc}</p>
+                  <div className="space-y-3 mb-8 p-4 bg-background rounded-xl border border-border">
+                    <div className="text-sm"><span className="font-bold text-foreground">Challenge:</span> Outdated legacy systems and fragmented data.</div>
+                    <div className="text-sm"><span className="font-bold text-primary">Gotecx Solution:</span> Unified digital platforms and automated workflows.</div>
                   </div>
-                  <Link href="/contact" className="inline-flex items-center text-primary font-semibold hover:underline">
-                    Discuss your specific needs <ArrowRight className="w-4 h-4 ml-1" />
+                  <Link href="/contact" className="inline-flex items-center text-primary font-bold hover:underline">
+                    Discuss your specific needs <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </div>
               </motion.div>

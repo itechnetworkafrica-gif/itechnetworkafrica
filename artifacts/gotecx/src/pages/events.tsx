@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Events() {
@@ -12,7 +12,7 @@ export default function Events() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -24,7 +24,7 @@ export default function Events() {
         </div>
       </section>
 
-      <section className="py-24 bg-background">
+      <section className="py-24">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="space-y-6">
             {events.map((evt, i) => (
@@ -34,19 +34,21 @@ export default function Events() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 bg-card border border-border rounded-2xl flex flex-col md:flex-row gap-6 md:items-center justify-between group hover:border-primary transition-colors"
+                className="p-8 bg-card border border-border rounded-2xl flex flex-col md:flex-row gap-8 md:items-center justify-between group hover:border-primary transition-all shadow-sm"
               >
                 <div className="flex-1">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-bold mb-4">
+                  <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold mb-4 uppercase tracking-wider">
                     {evt.type}
                   </div>
                   <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{evt.title}</h3>
-                  <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
+                  <div className="flex flex-wrap gap-6 text-sm text-muted-foreground font-medium">
                     <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /> {evt.date}</span>
                     <span className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> {evt.location}</span>
                   </div>
                 </div>
-                <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 shrink-0">Register Now</Button>
+                <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 shrink-0 font-bold px-8">
+                  Register Now <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
               </motion.div>
             ))}
           </div>
