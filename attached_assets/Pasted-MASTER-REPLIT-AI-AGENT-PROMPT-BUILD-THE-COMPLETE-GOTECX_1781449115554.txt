@@ -1,0 +1,923 @@
+MASTER REPLIT AI AGENT PROMPT – BUILD THE COMPLETE GOTECX GLOBAL TECHNOLOGY PLATFORM
+
+I will upload the official Gotecx Logo and iTech Network Africa Logo.
+
+IMPORTANT: Analyze both uploaded logos and automatically extract the exact brand colors, typography style, visual identity, iconography, gradients, and brand personality from the logos.
+
+The entire website must strictly follow the uploaded brand colors and visual identity.
+
+DO NOT use generic colors.
+
+DO NOT replace the brand colors with blue, purple, or random technology colors.
+
+The website design system, buttons, icons, cards, backgrounds, gradients, hover effects, animations, forms, illustrations, and UI components must all be generated from the uploaded logo colors.
+
+The website should feel like a Fortune 500 technology company and be capable of competing visually with Google, Microsoft, Salesforce, Stripe, Shopify, Oracle, Adobe, and HubSpot.
+
+
+---
+
+PROJECT OBJECTIVE
+
+Build a fully functional enterprise-grade global technology website for:
+
+GOTECX
+
+Powered by
+
+iTech Network Africa
+
+Gotecx is not an African-only company.
+
+Gotecx is positioning itself as a global technology company serving businesses, governments, NGOs, startups, SMEs, enterprises, and institutions worldwide.
+
+The website must reflect a global vision, innovation, trust, technology leadership, and future scalability.
+
+This is not a company profile website.
+
+This is a complete digital ecosystem.
+
+
+---
+
+WEBSITE ARCHITECTURE
+
+Create the following fully functional pages:
+
+1. Home
+
+
+2. About Us
+
+
+3. Solutions
+
+
+4. Products
+
+
+5. Services
+
+
+6. Industries
+
+
+7. Success Stories
+
+
+8. Partners
+
+
+9. Leadership
+
+
+10. Careers
+
+
+11. Resources
+
+
+12. Blog
+
+
+13. Events
+
+
+14. Media Center
+
+
+15. Investors
+
+
+16. Contact
+
+
+17. Support Center
+
+
+18. Documentation
+
+
+19. FAQs
+
+
+20. Privacy Policy
+
+
+21. Terms & Conditions
+
+
+
+Every page must contain unique content.
+
+No placeholder text.
+
+No duplicate layouts.
+
+Every page should feel purpose-built.
+
+
+---
+
+GLOBAL NAVIGATION SYSTEM
+
+Create a premium mega-navigation system.
+
+Sticky navigation.
+
+Glassmorphism effect.
+
+Professional enterprise layout.
+
+
+---
+
+LEFT SIDE
+
+Display:
+
+Gotecx Logo
+
+Small text below:
+
+Powered by iTech Network Africa
+
+
+---
+
+CENTER MENU
+
+Home
+
+About
+
+Solutions
+
+Products
+
+Services
+
+Industries
+
+Resources
+
+Company
+
+Contact
+
+
+---
+
+RIGHT SIDE
+
+Search Icon
+
+Language Selector
+
+Login
+
+Request Demo Button
+
+
+---
+
+MEGA MENU STRUCTURE
+
+SOLUTIONS
+
+Business Solutions
+
+Retail Solutions
+
+Restaurant Solutions
+
+Healthcare Solutions
+
+Education Solutions
+
+NGO Solutions
+
+Government Solutions
+
+Enterprise Solutions
+
+Financial Services Solutions
+
+Telecommunications Solutions
+
+
+---
+
+Technology Solutions
+
+AI Solutions
+
+Automation Solutions
+
+Cloud Solutions
+
+Cybersecurity Solutions
+
+Data Analytics
+
+Digital Transformation
+
+Custom Software Solutions
+
+
+---
+
+PRODUCTS
+
+Featured Product
+
+Gotecx POS
+
+Enterprise POS and Business Management Platform
+
+Coming Soon
+
+Gotecx AI
+
+Gotecx Analytics
+
+Gotecx Business Suite
+
+Gotecx CRM
+
+Gotecx ERP
+
+Gotecx Cloud
+
+Clearly mark future products as:
+
+"Future Product Roadmap"
+
+Not currently launched.
+
+
+---
+
+SERVICES
+
+Website Development
+
+Mobile App Development
+
+Software Development
+
+Cloud Infrastructure
+
+UI/UX Design
+
+Branding
+
+Digital Marketing
+
+Cybersecurity
+
+IT Consulting
+
+Enterprise Technology Consulting
+
+Business Automation
+
+AI Integration
+
+
+---
+
+COMPANY
+
+Leadership
+
+Careers
+
+Partners
+
+Investors
+
+Media Center
+
+Events
+
+Success Stories
+
+
+---
+
+HOME PAGE
+
+This page should feel like a billion-dollar technology company website.
+
+
+---
+
+SECTION 1 – IMMERSIVE HERO
+
+Full-screen experience.
+
+Advanced motion effects.
+
+Technology globe.
+
+AI-inspired particles.
+
+Digital network animations.
+
+Global technology map.
+
+Subtle premium movement.
+
+
+---
+
+Headline:
+
+Empowering Businesses Through Technology
+
+Subheadline:
+
+Helping organizations around the world automate, innovate, transform, and scale through intelligent technology solutions.
+
+Buttons:
+
+Request Demo
+
+Explore Solutions
+
+Contact Sales
+
+Watch Overview
+
+
+---
+
+Hero Dashboard Showcase
+
+Display floating product cards:
+
+Gotecx POS
+
+AI Solutions
+
+Cloud Services
+
+Digital Transformation
+
+Business Automation
+
+Analytics
+
+Cards animate while scrolling.
+
+
+---
+
+SECTION 2 – GLOBAL IMPACT
+
+Animated statistics.
+
+Projects Delivered
+
+Industries Served
+
+Technology Solutions
+
+Businesses Supported
+
+Countries Reached
+
+Customer Satisfaction
+
+Use advanced count-up animations.
+
+
+---
+
+SECTION 3 – WHO WE ARE
+
+Full company story.
+
+Mission.
+
+Vision.
+
+Values.
+
+Global strategy.
+
+Technology-first approach.
+
+Innovation roadmap.
+
+Timeline component.
+
+Interactive storytelling.
+
+
+---
+
+SECTION 4 – PRODUCT ECOSYSTEM
+
+Large product showcase.
+
+Interactive product tabs.
+
+Dashboard previews.
+
+Feature breakdowns.
+
+Benefits.
+
+Product comparisons.
+
+Roadmap section.
+
+Demo request forms.
+
+
+---
+
+SECTION 5 – SOLUTIONS ECOSYSTEM
+
+Enterprise solution cards.
+
+Detailed descriptions.
+
+Business benefits.
+
+Industries served.
+
+Technology stack.
+
+CTA buttons.
+
+Advanced hover effects.
+
+
+---
+
+SECTION 6 – INDUSTRIES
+
+Dedicated cards.
+
+Retail
+
+Healthcare
+
+Education
+
+Government
+
+NGOs
+
+Hospitality
+
+Manufacturing
+
+Banking
+
+Telecommunications
+
+Logistics
+
+Each card expands into a mini information panel.
+
+
+---
+
+SECTION 7 – WHY GOTECX
+
+Innovation.
+
+Scalability.
+
+Security.
+
+Reliability.
+
+Global Vision.
+
+Expertise.
+
+Future Readiness.
+
+Professional icons.
+
+Animated interactions.
+
+
+---
+
+SECTION 8 – SUCCESS STORIES
+
+Case studies.
+
+Client testimonials.
+
+Results.
+
+Performance improvements.
+
+Business growth statistics.
+
+Video testimonial placeholders.
+
+
+---
+
+SECTION 9 – TECHNOLOGY PARTNERS
+
+Global partnership section.
+
+Partner logos.
+
+Strategic alliance opportunities.
+
+Become a Partner CTA.
+
+
+---
+
+SECTION 10 – KNOWLEDGE HUB
+
+Latest articles.
+
+Resources.
+
+Guides.
+
+Case studies.
+
+Technology trends.
+
+AI insights.
+
+Business transformation content.
+
+
+---
+
+SECTION 11 – EVENTS
+
+Technology events.
+
+Webinars.
+
+Conferences.
+
+Workshops.
+
+Upcoming announcements.
+
+
+---
+
+SECTION 12 – FINAL CTA
+
+Massive premium section.
+
+Headline:
+
+Transform Your Business With Technology That Scales
+
+Buttons:
+
+Request Demo
+
+Contact Us
+
+Schedule Consultation
+
+
+---
+
+ABOUT PAGE
+
+Create a world-class corporate story.
+
+Company history.
+
+Mission.
+
+Vision.
+
+Values.
+
+Leadership philosophy.
+
+Innovation culture.
+
+Future roadmap.
+
+Global ambitions.
+
+Interactive timeline.
+
+Awards section.
+
+Company milestones.
+
+
+---
+
+PRODUCTS PAGE
+
+Dedicated product platform.
+
+Gotecx POS must have:
+
+Overview
+
+Features
+
+Benefits
+
+Pricing
+
+Screenshots
+
+FAQs
+
+Demo Request Form
+
+Support Information
+
+Roadmap
+
+Future products area.
+
+
+---
+
+SERVICES PAGE
+
+Every service should have:
+
+Overview
+
+Features
+
+Process
+
+Benefits
+
+Pricing inquiry
+
+Frequently Asked Questions
+
+Case studies
+
+Call-to-action
+
+
+---
+
+INDUSTRIES PAGE
+
+Create dedicated industry solution sections.
+
+Each industry receives its own detailed content.
+
+Challenges.
+
+Solutions.
+
+Technology stack.
+
+Expected results.
+
+
+---
+
+SUCCESS STORIES PAGE
+
+Case study system.
+
+Filter by industry.
+
+Business results.
+
+ROI statistics.
+
+Testimonials.
+
+Media gallery.
+
+
+---
+
+PARTNERS PAGE
+
+Strategic partnerships.
+
+Technology partners.
+
+Resellers.
+
+Investors.
+
+Government collaborations.
+
+NGO partnerships.
+
+Application form.
+
+
+---
+
+LEADERSHIP PAGE
+
+Executive leadership profiles.
+
+Organization structure.
+
+Founder section.
+
+Advisory board.
+
+Leadership philosophy.
+
+
+---
+
+CAREERS PAGE
+
+Job board.
+
+Culture section.
+
+Benefits.
+
+Internship program.
+
+Resume upload.
+
+Application form.
+
+
+---
+
+BLOG SYSTEM
+
+Full modern blog.
+
+Search.
+
+Categories.
+
+Tags.
+
+Author pages.
+
+Related articles.
+
+Newsletter.
+
+Social sharing.
+
+
+---
+
+SUPPORT CENTER
+
+Knowledge base.
+
+Search system.
+
+Documentation.
+
+Help center.
+
+Support tickets.
+
+Contact support.
+
+
+---
+
+CONTACT PAGE
+
+Interactive contact center.
+
+Phone: +231 776 836 689
+
+Email: itechnetworkafrica@gmail.com
+
+Features:
+
+Contact form
+
+WhatsApp integration
+
+Google Maps placeholder
+
+Sales inquiry
+
+Support inquiry
+
+Partnership inquiry
+
+Career inquiry
+
+
+---
+
+FOOTER
+
+Massive enterprise footer.
+
+Display both logos prominently.
+
+Company information.
+
+Quick links.
+
+Resources.
+
+Products.
+
+Solutions.
+
+Industries.
+
+Newsletter.
+
+Social media links.
+
+Contact information.
+
+Legal links.
+
+Copyright:
+
+© 2026 Gotecx. All Rights Reserved.
+
+Powered by iTech Network Africa.
+
+
+---
+
+ADVANCED FEATURES
+
+Build everything fully functional:
+
+✓ Working forms
+
+✓ Search system
+
+✓ Blog system
+
+✓ Newsletter
+
+✓ Animations
+
+✓ Dark mode
+
+✓ Light mode
+
+✓ Mobile responsiveness
+
+✓ Accessibility compliance
+
+✓ SEO optimization
+
+✓ Sitemap
+
+✓ Robots.txt
+
+✓ Structured schema
+
+✓ Mega menus
+
+✓ Breadcrumb navigation
+
+✓ Loading animations
+
+✓ Page transitions
+
+✓ Back-to-top button
+
+✓ Cookie consent
+
+✓ Analytics integration placeholders
+
+✓ CRM integration placeholders
+
+✓ Live chat placeholder
+
+✓ WhatsApp floating button
+
+✓ Multi-language ready architecture
+
+✓ Future SaaS product expansion support
+
+✓ Enterprise CMS-ready architecture
+
+
+---
+
+FINAL EXPECTATION
+
+The finished website should feel like a premium global technology company worth hundreds of millions of dollars. Every page, section, animation, card, button, layout, form, navigation item, and interaction must be polished, professional, modern, responsive, and built using the exact colors and visual identity extracted from the uploaded Gotecx and iTech Network Africa logos. The website should create instant trust with investors, clients, governments, NGOs, enterprises, and global partners while positioning Gotecx as a future world-class technology brand.
