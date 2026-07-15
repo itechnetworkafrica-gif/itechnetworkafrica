@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { useLocation } from "wouter";
 import { ScrollToTop } from "../ScrollToTop";
 import { LiveChat } from "../LiveChat";
+import { CookieBanner } from "../CookieBanner";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -21,6 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <Footer />
       <ScrollToTop />
       <LiveChat />
+      <CookieBanner />
     </div>
   );
 }

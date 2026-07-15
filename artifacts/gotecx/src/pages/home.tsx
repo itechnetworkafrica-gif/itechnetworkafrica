@@ -197,12 +197,16 @@ function HeroSlider() {
         />
       </AnimatePresence>
 
-      {/* Gradient overlay */}
-      <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlay}`} />
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0D1421] to-transparent" />
-      {/* Grid pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-40" style={{ backgroundImage: "repeating-linear-gradient(rgba(109,190,69,0.035) 0 1px, transparent 1px 80px), repeating-linear-gradient(90deg, rgba(109,190,69,0.035) 0 1px, transparent 1px 80px)" }} />
+      {/* Base dark layer — ensures image never bleeds through too bright */}
+      <div className="absolute inset-0 bg-[#0a0f1a]/70" />
+      {/* Strong left-to-right gradient — text zone (left) is nearly opaque */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#060c17]/98 via-[#0D1421]/80 to-[#0D1421]/25" />
+      {/* Vertical vignette — darkens top + bottom edges */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0D1421]/60 via-transparent to-[#0D1421]/50" />
+      {/* Bottom solid fade to page bg */}
+      <div className="absolute bottom-0 left-0 right-0 h-52 bg-gradient-to-t from-[#0D1421] via-[#0D1421]/70 to-transparent" />
+      {/* Subtle grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.18]" style={{ backgroundImage: "repeating-linear-gradient(rgba(109,190,69,0.06) 0 1px, transparent 1px 80px), repeating-linear-gradient(90deg, rgba(109,190,69,0.06) 0 1px, transparent 1px 80px)" }} />
 
       {/* ── Content ── */}
       <div className="relative z-10 container mx-auto px-4 pb-28 md:pb-32 max-w-6xl w-full">
