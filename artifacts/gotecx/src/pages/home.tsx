@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   ArrowRight, CheckCircle2, Globe, Shield, Zap, Target, LineChart, Lock,
   Users2, BrainCircuit, Quote, Cloud, LayoutGrid, Cpu, Building2, Briefcase,
   Globe2, Smartphone, BarChart3, Code2, Palette, Mail, Phone,
-  ChevronRight, Star, TrendingUp, Award, Clock,
+  ChevronRight, ChevronLeft, Star, TrendingUp, Award, Clock,
   ShoppingCart, Heart, GraduationCap, Landmark, CreditCard,
-  Factory, Truck, Hotel, HandHeart
+  Factory, Truck, Hotel, HandHeart, Calendar
 } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -79,104 +79,285 @@ const fadeUp = {
   show:   { opacity: 1, y: 0, transition: { duration: 0.55 } },
 };
 
+/* ─── hero slides data ──────────────────────────── */
+const heroSlides = [
+  {
+    img: heroImg,
+    badge: "Powered by iTech Network Africa",
+    heading: ["Empowering", "Businesses", "Through Technology"],
+    accent: "Through Technology",
+    sub: "Helping organizations around the world automate, innovate, transform, and scale with intelligent technology solutions.",
+    cta1: { label: "Request a Demo", href: "/contact" },
+    cta2: { label: "Explore Solutions", href: "/solutions" },
+    overlay: "from-[#0D1421]/85 via-[#0D1421]/55 to-transparent",
+    stat: { val: "500+", label: "Projects Delivered" },
+  },
+  {
+    img: teamImg,
+    badge: "Expert Engineering Teams",
+    heading: ["Custom Software.", "Enterprise Scale.", "Zero Compromise."],
+    accent: "Zero Compromise.",
+    sub: "From web and mobile apps to full-scale enterprise platforms — our engineers deliver production-grade software that grows with your business.",
+    cta1: { label: "View Services", href: "/services" },
+    cta2: { label: "Book a Call", href: "/booking" },
+    overlay: "from-[#0D1421]/90 via-[#0D1421]/60 to-transparent",
+    stat: { val: "200+", label: "Apps Shipped" },
+  },
+  {
+    img: heroImg,
+    badge: "AI & Intelligent Automation",
+    heading: ["AI-Powered", "Business", "Transformation"],
+    accent: "Transformation",
+    sub: "Deploy machine learning, NLP, and predictive analytics into your core operations. We make AI practical, measurable, and impactful.",
+    cta1: { label: "Explore AI Services", href: "/services#ai" },
+    cta2: { label: "Talk to an Expert", href: "/contact" },
+    overlay: "from-[#071210]/90 via-[#0D1421]/65 to-transparent",
+    stat: { val: "60%", label: "Avg. Efficiency Gains" },
+  },
+  {
+    img: posImg,
+    badge: "Gotecx POS — Available Now",
+    heading: ["Command Your", "Business", "Operations"],
+    accent: "Operations",
+    sub: "Real-time inventory, multi-location support, employee management, advanced analytics, and offline mode — built for the modern enterprise.",
+    cta1: { label: "Explore Gotecx POS", href: "/products" },
+    cta2: { label: "Schedule a Demo", href: "/booking" },
+    overlay: "from-[#0D1421]/92 via-[#0D1421]/65 to-transparent",
+    stat: { val: "15+", label: "Countries Live" },
+  },
+  {
+    img: heroImg,
+    badge: "Cloud & Infrastructure",
+    heading: ["Infrastructure", "That Never", "Sleeps"],
+    accent: "Sleeps",
+    sub: "Multi-cloud architecture, zero-downtime migrations, Kubernetes orchestration, and 24/7 monitoring — built for 99.9% uptime SLA.",
+    cta1: { label: "Cloud Solutions", href: "/solutions#cloud" },
+    cta2: { label: "Get a Proposal", href: "/contact" },
+    overlay: "from-[#060D18]/92 via-[#0D1421]/65 to-transparent",
+    stat: { val: "99.9%", label: "Uptime SLA" },
+  },
+  {
+    img: teamImg,
+    badge: "Founded in Liberia · Serving the World",
+    heading: ["Global Technology.", "African", "Innovation."],
+    accent: "Innovation.",
+    sub: "Born from a mission to bring world-class technology to every organization — regardless of geography. From Monrovia to the world.",
+    cta1: { label: "Our Story", href: "/about" },
+    cta2: { label: "Book Consultation", href: "/booking" },
+    overlay: "from-[#0D1421]/90 via-[#0D1421]/60 to-transparent",
+    stat: { val: "98%", label: "Client Satisfaction" },
+  },
+];
+
+const SLIDE_DURATION = 6000;
+
+function HeroSlider() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const total = heroSlides.length;
+
+  const goto = useCallback((idx: number) => {
+    setActive(((idx % total) + total) % total);
+    setProgress(0);
+  }, [total]);
+
+  useEffect(() => {
+    if (paused) return;
+    timerRef.current = setInterval(() => goto(active + 1), SLIDE_DURATION);
+    progressRef.current = setInterval(() => {
+      setProgress(p => Math.min(p + (100 / (SLIDE_DURATION / 80)), 100));
+    }, 80);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      if (progressRef.current) clearInterval(progressRef.current);
+    };
+  }, [active, paused, goto]);
+
+  const slide = heroSlides[active];
+
+  return (
+    <section
+      className="relative h-screen min-h-[600px] flex items-end overflow-hidden bg-[#0D1421]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* ── Background image with Ken Burns zoom-out ── */}
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={`bg-${active}`}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${slide.img})` }}
+          initial={{ scale: 1.12, opacity: 0 }}
+          animate={{ scale: 1.0, opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ scale: { duration: 7, ease: "linear" }, opacity: { duration: 0.9 } }}
+        />
+      </AnimatePresence>
+
+      {/* Gradient overlay */}
+      <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlay}`} />
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0D1421] to-transparent" />
+      {/* Grid pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-40" style={{ backgroundImage: "repeating-linear-gradient(rgba(109,190,69,0.035) 0 1px, transparent 1px 80px), repeating-linear-gradient(90deg, rgba(109,190,69,0.035) 0 1px, transparent 1px 80px)" }} />
+
+      {/* ── Content ── */}
+      <div className="relative z-10 container mx-auto px-4 pb-28 md:pb-32 max-w-6xl w-full">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`content-${active}`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            className="max-w-3xl"
+          >
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/15 border border-primary/35 text-primary text-xs font-bold tracking-wider mb-6 uppercase"
+            >
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              {slide.badge}
+            </motion.div>
+
+            {/* Heading */}
+            <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-black tracking-tight text-white leading-[1.05] mb-6">
+              {slide.heading.map((line, i) => (
+                <motion.span
+                  key={i}
+                  className={`block ${line === slide.accent ? "text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#8ED44F] to-[#5AB83A]" : ""}`}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 + i * 0.1, duration: 0.55 }}
+                >
+                  {line}
+                </motion.span>
+              ))}
+            </h1>
+
+            {/* Sub */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.55 }}
+              className="text-lg md:text-xl text-white/65 mb-8 max-w-xl leading-relaxed"
+            >
+              {slide.sub}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              className="flex flex-wrap gap-3 mb-8"
+            >
+              <Link href={slide.cta1.href}>
+                <button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-3.5 font-bold shadow-[0_0_28px_rgba(109,190,69,0.4)] text-base transition-all hover:shadow-[0_0_40px_rgba(109,190,69,0.55)] flex items-center gap-2">
+                  {slide.cta1.label} <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
+              <Link href={slide.cta2.href}>
+                <button className="border border-white/25 text-white hover:bg-white/10 rounded-full px-8 py-3.5 font-semibold text-base transition-colors backdrop-blur-sm bg-white/5">
+                  {slide.cta2.label}
+                </button>
+              </Link>
+              <Link href="/booking">
+                <button className="border border-primary/40 text-primary hover:bg-primary/10 rounded-full px-6 py-3.5 font-semibold text-sm transition-colors flex items-center gap-2">
+                  <Calendar className="w-4 h-4" /> Book Consultation
+                </button>
+              </Link>
+            </motion.div>
+
+            {/* Trust signals */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="flex flex-wrap items-center gap-5"
+            >
+              {[{ icon: CheckCircle2, label: "500+ Projects" }, { icon: Globe2, label: "15+ Countries" }, { icon: Award, label: "98% Satisfaction" }].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2 text-white/45 text-sm font-medium">
+                  <Icon className="w-4 h-4 text-primary" /> {label}
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* ── Slide counter stat (top-right) ── */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`stat-${active}`}
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 30 }}
+          transition={{ duration: 0.5 }}
+          className="absolute top-1/2 right-8 -translate-y-1/2 hidden lg:flex flex-col items-center text-center z-20"
+        >
+          <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/10 backdrop-blur-md">
+            <div className="text-3xl font-black text-primary mb-1">{slide.stat.val}</div>
+            <div className="text-[11px] text-white/45 font-bold uppercase tracking-wider">{slide.stat.label}</div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Left / Right arrows ── */}
+      <button
+        onClick={() => goto(active - 1)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+        aria-label="Previous"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      <button
+        onClick={() => goto(active + 1)}
+        className="absolute right-4 lg:right-24 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+        aria-label="Next"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+
+      {/* ── Slide dots + progress ── */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goto(i)}
+              className={`transition-all duration-300 rounded-full ${i === active ? "w-8 h-2 bg-primary" : "w-2 h-2 bg-white/30 hover:bg-white/60"}`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        {/* Progress bar */}
+        <div className="w-40 h-[2px] bg-white/15 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-primary rounded-full origin-left"
+            style={{ scaleX: progress / 100 }}
+            transition={{ ease: "linear" }}
+          />
+        </div>
+        {/* Slide count */}
+        <span className="text-[10px] text-white/35 font-bold tracking-widest uppercase">{active + 1} / {total}</span>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <div className="w-full bg-background overflow-hidden">
 
-      {/* ── HERO ────────────────────────────────────────── */}
-      <section className="relative min-h-[100vh] flex items-center pt-16 overflow-hidden bg-[#0D1421]">
-        {/* Background grid */}
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(rgba(109,190,69,0.04) 0 1px, transparent 1px 80px), repeating-linear-gradient(90deg, rgba(109,190,69,0.04) 0 1px, transparent 1px 80px)" }} />
-        {/* Glow */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[700px] bg-primary/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
-        {/* Floating orbs */}
-        <motion.div animate={{ y: [0,-28,0], x:[0,16,0] }} transition={{ duration:6, repeat:Infinity, ease:"easeInOut" }} className="absolute top-1/4 right-1/3 w-24 h-24 bg-primary/25 rounded-full blur-[32px] pointer-events-none" />
-        <motion.div animate={{ y: [0,32,0], x:[0,-20,0] }} transition={{ duration:8, repeat:Infinity, ease:"easeInOut" }} className="absolute bottom-1/3 left-1/5 w-36 h-36 bg-blue-500/15 rounded-full blur-[48px] pointer-events-none" />
-
-        <div className="container relative z-10 px-4 mx-auto grid lg:grid-cols-2 gap-12 items-center py-16">
-          {/* Left */}
-          <motion.div initial={{ opacity:0, x:-48 }} animate={{ opacity:1, x:0 }} transition={{ duration:0.85 }}>
-            <motion.div initial={{ opacity:0, scale:0.9 }} animate={{ opacity:1, scale:1 }} transition={{ delay:0.1, duration:0.5 }} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold tracking-wider mb-8 uppercase">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Powered by iTech Network Africa · Founded in Liberia
-            </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-black tracking-tight text-white mb-6 leading-[1.08]">
-              Empowering<br />
-              Businesses<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-green-400 to-[#2D9F6F]">Through Technology</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/65 mb-10 max-w-lg leading-relaxed">
-              Helping organizations around the world automate, innovate, transform, and scale with intelligent technology solutions.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/contact">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-13 font-bold shadow-[0_0_30px_rgba(109,190,69,0.35)] text-base">
-                  Request a Demo <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              </Link>
-              <Link href="/solutions">
-                <Button size="lg" variant="outline" className="rounded-full px-8 h-13 border-white/20 text-white hover:bg-white/10 font-semibold bg-white/5 backdrop-blur-sm text-base">
-                  Explore Solutions
-                </Button>
-              </Link>
-              <Link href="/products">
-                <Button size="lg" variant="ghost" className="rounded-full px-8 h-13 text-white hover:bg-white/10 font-semibold text-base">
-                  See Products
-                </Button>
-              </Link>
-            </div>
-            {/* Trust signals */}
-            <div className="mt-10 flex flex-wrap items-center gap-6">
-              {[{ icon: CheckCircle2, label: "500+ Projects" }, { icon: Globe2, label: "15+ Countries" }, { icon: Award, label: "98% Satisfaction" }].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-2 text-white/50 text-sm font-medium">
-                  <Icon className="w-4 h-4 text-primary" /> {label}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right — hero image + floating cards */}
-          <motion.div initial={{ opacity:0, scale:0.92 }} animate={{ opacity:1, scale:1 }} transition={{ duration:1, delay:0.25 }} className="relative hidden lg:block">
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(109,190,69,0.15)]">
-              <img src={heroImg} alt="Gotecx Technology" className="w-full h-auto object-cover" style={{ maxHeight: 500 }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D1421]/70 via-transparent to-transparent" />
-            </div>
-            {/* Floating stat cards */}
-            <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:3.5, repeat:Infinity, ease:"easeInOut" }} className="absolute -left-8 top-12 bg-card/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center"><TrendingUp className="w-5 h-5 text-primary" /></div>
-                <div>
-                  <div className="text-white font-black text-xl">300+</div>
-                  <div className="text-white/50 text-xs">Businesses Served</div>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div animate={{ y:[0,12,0] }} transition={{ duration:4, repeat:Infinity, ease:"easeInOut", delay:0.8 }} className="absolute -right-6 bottom-20 bg-card/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center"><Star className="w-5 h-5 text-blue-400" /></div>
-                <div>
-                  <div className="text-white font-black text-xl">98%</div>
-                  <div className="text-white/50 text-xs">Client Satisfaction</div>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:5, repeat:Infinity, ease:"easeInOut", delay:1.5 }} className="absolute left-10 -bottom-6 bg-primary rounded-2xl p-4 shadow-2xl">
-              <div className="text-white font-bold text-sm">Gotecx POS Live</div>
-              <div className="flex items-center gap-1.5 mt-1">
-                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                <span className="text-white/80 text-xs">Processing transactions</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div animate={{ y:[0,10,0] }} transition={{ duration:2, repeat:Infinity }} className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 flex flex-col items-center gap-1">
-          <span className="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
-          <div className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent" />
-        </motion.div>
-      </section>
+      {/* ── HERO SLIDER ─────────────────────────────────── */}
+      <HeroSlider />
 
       {/* ── AUTO-SLIDING TICKER ─────────────────────────── */}
       <div className="bg-[#0D1421] border-b border-white/[0.08] overflow-hidden py-0">
