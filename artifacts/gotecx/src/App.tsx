@@ -29,6 +29,7 @@ import Docs from "@/pages/docs";
 import Faqs from "@/pages/faqs";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
+import Booking from "@/pages/booking";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ function Router() {
         <Route path="/faqs" component={Faqs} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
+        <Route path="/booking" component={Booking} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

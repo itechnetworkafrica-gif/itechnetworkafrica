@@ -36,15 +36,15 @@ function Counter({ to, suffix = "", prefix = "" }: { to: number; suffix?: string
 
 /* ─── service cards ─────────────────────────────── */
 const services = [
-  { icon: Code2,       title: "Software Development",   desc: "Custom web and enterprise applications built with modern stacks. From MVP to full-scale platform.", color: "from-blue-500/20 to-blue-600/5" },
-  { icon: Smartphone,  title: "Mobile App Development", desc: "Native iOS and Android apps, cross-platform solutions, and PWAs for any business need.", color: "from-purple-500/20 to-purple-600/5" },
+  { icon: Code2,       title: "Software Development",   desc: "Custom web and enterprise applications built with modern stacks. From MVP to full-scale platform.", color: "from-primary/20 to-primary/5" },
+  { icon: Smartphone,  title: "Mobile App Development", desc: "Native iOS and Android apps, cross-platform solutions, and PWAs for any business need.", color: "from-primary/15 to-primary/5" },
   { icon: Globe2,      title: "Web Development",        desc: "Fast, responsive, SEO-optimized websites and web portals built for conversion and performance.", color: "from-primary/20 to-primary/5" },
-  { icon: BrainCircuit,title: "AI & Automation",        desc: "Intelligent workflows, predictive analytics, NLP, and machine learning integrations.", color: "from-amber-500/20 to-amber-600/5" },
-  { icon: Cloud,       title: "Cloud Infrastructure",   desc: "Cloud migrations, managed hosting, DevOps, CI/CD pipelines, and multi-region deployments.", color: "from-cyan-500/20 to-cyan-600/5" },
-  { icon: Shield,      title: "Cybersecurity",          desc: "Penetration testing, security audits, endpoint protection, and compliance frameworks.", color: "from-red-500/20 to-red-600/5" },
-  { icon: BarChart3,   title: "Data Analytics",         desc: "Business intelligence dashboards, data warehousing, and real-time reporting systems.", color: "from-emerald-500/20 to-emerald-600/5" },
-  { icon: Palette,     title: "UI/UX Design",           desc: "User-centered design, brand identity, product design systems, and interactive prototypes.", color: "from-pink-500/20 to-pink-600/5" },
-  { icon: Briefcase,   title: "IT Consulting",          desc: "Technology strategy, architecture planning, digital roadmaps, and CTO-on-demand services.", color: "from-orange-500/20 to-orange-600/5" },
+  { icon: BrainCircuit,title: "AI & Automation",        desc: "Intelligent workflows, predictive analytics, NLP, and machine learning integrations.", color: "from-primary/15 to-primary/5" },
+  { icon: Cloud,       title: "Cloud Infrastructure",   desc: "Cloud migrations, managed hosting, DevOps, CI/CD pipelines, and multi-region deployments.", color: "from-primary/20 to-primary/5" },
+  { icon: Shield,      title: "Cybersecurity",          desc: "Penetration testing, security audits, endpoint protection, and compliance frameworks.", color: "from-primary/15 to-primary/5" },
+  { icon: BarChart3,   title: "Data Analytics",         desc: "Business intelligence dashboards, data warehousing, and real-time reporting systems.", color: "from-primary/20 to-primary/5" },
+  { icon: Palette,     title: "UI/UX Design",           desc: "User-centered design, brand identity, product design systems, and interactive prototypes.", color: "from-primary/15 to-primary/5" },
+  { icon: Briefcase,   title: "IT Consulting",          desc: "Technology strategy, architecture planning, digital roadmaps, and CTO-on-demand services.", color: "from-primary/20 to-primary/5" },
 ];
 
 /* ─── process steps ─────────────────────────────── */
@@ -177,6 +177,53 @@ export default function Home() {
           <div className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent" />
         </motion.div>
       </section>
+
+      {/* ── AUTO-SLIDING TICKER ─────────────────────────── */}
+      <div className="bg-[#0D1421] border-b border-white/[0.08] overflow-hidden py-0">
+        {/* Row 1 — scrolls left */}
+        <div className="relative flex overflow-x-hidden py-4 border-b border-white/[0.06]">
+          <motion.div
+            className="flex gap-4 flex-nowrap"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
+          >
+            {[
+              "Software Development", "Cloud Infrastructure", "AI & Machine Learning", "Mobile Apps",
+              "Cybersecurity", "UI/UX Design", "Web Development", "IT Consulting",
+              "Data Analytics", "Digital Marketing", "Business Automation", "Enterprise ERP",
+              "Software Development", "Cloud Infrastructure", "AI & Machine Learning", "Mobile Apps",
+              "Cybersecurity", "UI/UX Design", "Web Development", "IT Consulting",
+              "Data Analytics", "Digital Marketing", "Business Automation", "Enterprise ERP",
+            ].map((item, i) => (
+              <span key={i} className="flex-shrink-0 flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/[0.04] text-white/60 text-xs font-semibold whitespace-nowrap hover:border-primary/40 hover:text-primary transition-colors cursor-default">
+                <span className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
+                {item}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Row 2 — scrolls right */}
+        <div className="relative flex overflow-x-hidden py-4">
+          <motion.div
+            className="flex gap-4 flex-nowrap"
+            animate={{ x: ["-50%", "0%"] }}
+            transition={{ repeat: Infinity, duration: 32, ease: "linear" }}
+          >
+            {[
+              "Liberia", "Nigeria", "Ghana", "South Africa", "Kenya", "USA", "UK", "Europe",
+              "Healthcare Tech", "Gov Technology", "EdTech", "FinTech", "RetailTech", "AgriTech",
+              "Liberia", "Nigeria", "Ghana", "South Africa", "Kenya", "USA", "UK", "Europe",
+              "Healthcare Tech", "Gov Technology", "EdTech", "FinTech", "RetailTech", "AgriTech",
+            ].map((item, i) => (
+              <span key={i} className="flex-shrink-0 flex items-center gap-3 px-5 py-2 rounded-full border border-primary/20 bg-primary/[0.06] text-primary/70 text-xs font-semibold whitespace-nowrap hover:bg-primary/15 hover:text-primary transition-colors cursor-default">
+                <span className="w-1.5 h-1.5 bg-primary/60 rounded-full flex-shrink-0" />
+                {item}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </div>
 
       {/* ── ANIMATED STATS ──────────────────────────────── */}
       <section className="py-20 bg-[#0D1421] border-b border-white/10">
