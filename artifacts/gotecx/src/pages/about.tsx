@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Zap, Target, Shield, HeartHandshake, Users, BookOpen, Globe2, ArrowRight, CheckCircle2, Quote } from "lucide-react";
 import { Link } from "wouter";
 import teamImg from "@assets/generated_images/diverse_multicultural_tech_team_1341.png";
-import founderImg from "@assets/generated_images/professional_corporate_portrait_of_d454.png";
+import founderImg from "@assets/1777816891225_1784147053274.png";
 
 const values = [
   { title: "Innovation", desc: "We continuously explore new ideas, technologies, and opportunities that create value for our customers and communities.", icon: Zap },

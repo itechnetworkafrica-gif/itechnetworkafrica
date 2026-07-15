@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Mail, Twitter, Globe, Quote, Star, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
-import founderImg from "@assets/generated_images/professional_corporate_portrait_of_d454.png";
+import founderImg from "@assets/1777816891225_1784147053274.png";
 import teamImg from "@assets/generated_images/diverse_multicultural_tech_team_1341.png";
 
 export default function Leadership() {
