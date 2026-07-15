@@ -4,7 +4,9 @@ import {
   ArrowRight, CheckCircle2, Globe, Shield, Zap, Target, LineChart, Lock,
   Users2, BrainCircuit, Quote, Cloud, LayoutGrid, Cpu, Building2, Briefcase,
   Globe2, Smartphone, BarChart3, Code2, Palette, Mail, Phone,
-  ChevronRight, Play, Star, TrendingUp, Award, Clock
+  ChevronRight, Star, TrendingUp, Award, Clock,
+  ShoppingCart, Heart, GraduationCap, Landmark, CreditCard,
+  Factory, Truck, Hotel, HandHeart
 } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -56,16 +58,16 @@ const steps = [
 ];
 
 const industries = [
-  { label: "Retail & Commerce",    icon: "🛒" },
-  { label: "Healthcare",           icon: "🏥" },
-  { label: "Education",            icon: "🎓" },
-  { label: "Government",           icon: "🏛" },
-  { label: "Financial Services",   icon: "💳" },
-  { label: "Manufacturing",        icon: "🏭" },
-  { label: "Logistics",            icon: "🚚" },
-  { label: "Real Estate",          icon: "🏢" },
-  { label: "Hospitality",          icon: "🏨" },
-  { label: "NGOs & Non-Profits",   icon: "🤝" },
+  { label: "Retail & Commerce",    Icon: ShoppingCart },
+  { label: "Healthcare",           Icon: Heart },
+  { label: "Education",            Icon: GraduationCap },
+  { label: "Government",           Icon: Landmark },
+  { label: "Financial Services",   Icon: CreditCard },
+  { label: "Manufacturing",        Icon: Factory },
+  { label: "Logistics",            Icon: Truck },
+  { label: "Real Estate",          Icon: Building2 },
+  { label: "Hospitality",          Icon: Hotel },
+  { label: "NGOs & Non-Profits",   Icon: HandHeart },
 ];
 
 const stagger = {
@@ -383,7 +385,9 @@ export default function Home() {
                 whileHover={{ scale:1.04, y:-4 }}
                 className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary hover:shadow-lg transition-all group cursor-pointer"
               >
-                <div className="text-3xl mb-3">{ind.icon}</div>
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
+                  <ind.Icon className="w-5 h-5 text-primary" />
+                </div>
                 <h4 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">{ind.label}</h4>
               </motion.div>
             ))}

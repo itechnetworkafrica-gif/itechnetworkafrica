@@ -468,6 +468,11 @@ export function Header() {
             >
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
+            <Link href="/contact" onClick={closeAll}>
+              <Button className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-4 h-8 text-xs flex">
+                Get Started
+              </Button>
+            </Link>
             <button
               onClick={() => setIsMobileOpen(true)}
               className="w-10 h-10 flex items-center justify-center rounded-xl bg-muted text-foreground transition-colors"
