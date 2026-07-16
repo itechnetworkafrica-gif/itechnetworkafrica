@@ -1,24 +1,32 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
   "compilerOptions": {
-    "incremental": true,
-    "tsBuildInfoFile": ".tsbuildinfo",
-    "noEmit": true,
-    "jsx": "preserve",
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "resolveJsonModule": true,
+    "incremental":                true,
+    "tsBuildInfoFile":            ".tsbuildinfo",
+    "isolatedModules":            true,
+    "noEmit":                     true,
+    "noEmitOnError":              true,
+    "target":                     "es2022",
+    "lib":                        ["esnext", "dom", "dom.iterable"],
+    "module":                     "esnext",
+    "moduleResolution":           "bundler",
+    "jsx":                        "preserve",
+    "resolveJsonModule":          true,
     "allowImportingTsExtensions": true,
-    "moduleResolution": "bundler",
-    "types": ["node", "vite/client"],
+    "types":                      ["node", "vite/client"],
+    "noImplicitAny":              true,
+    "noImplicitThis":             true,
+    "strictNullChecks":           true,
+    "strictBindCallApply":        true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict":               true,
+    "noImplicitReturns":          true,
+    "skipLibCheck":               true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*":      ["./src/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
-  "references": [
-    {
-      "path": "../../lib/api-client-react"
-    }
-  ]
+  "include": ["src/**/*", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }
