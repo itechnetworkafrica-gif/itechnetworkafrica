@@ -90,8 +90,9 @@ const heroSlides = [
     sub: "Helping organizations around the world automate, innovate, transform, and scale with intelligent technology solutions.",
     cta1: { label: "Request a Demo", href: "/contact" },
     cta2: { label: "Explore Solutions", href: "/solutions" },
-    overlay: "from-[#0D1421]/85 via-[#0D1421]/55 to-transparent",
     stat: { val: "500+", label: "Projects Delivered" },
+    tag: "Enterprise Platform",
+    color: "#6DBE45",
   },
   {
     img: teamImg,
@@ -101,8 +102,9 @@ const heroSlides = [
     sub: "From web and mobile apps to full-scale enterprise platforms — our engineers deliver production-grade software that grows with your business.",
     cta1: { label: "View Services", href: "/services" },
     cta2: { label: "Book a Call", href: "/booking" },
-    overlay: "from-[#0D1421]/90 via-[#0D1421]/60 to-transparent",
     stat: { val: "200+", label: "Apps Shipped" },
+    tag: "Software Dev",
+    color: "#5AB83A",
   },
   {
     img: heroImg,
@@ -110,10 +112,11 @@ const heroSlides = [
     heading: ["AI-Powered", "Business", "Transformation"],
     accent: "Transformation",
     sub: "Deploy machine learning, NLP, and predictive analytics into your core operations. We make AI practical, measurable, and impactful.",
-    cta1: { label: "Explore AI Services", href: "/services#ai" },
+    cta1: { label: "Explore AI Services", href: "/services" },
     cta2: { label: "Talk to an Expert", href: "/contact" },
-    overlay: "from-[#071210]/90 via-[#0D1421]/65 to-transparent",
     stat: { val: "60%", label: "Avg. Efficiency Gains" },
+    tag: "AI & Automation",
+    color: "#7ED321",
   },
   {
     img: posImg,
@@ -123,8 +126,9 @@ const heroSlides = [
     sub: "Real-time inventory, multi-location support, employee management, advanced analytics, and offline mode — built for the modern enterprise.",
     cta1: { label: "Explore Gotecx POS", href: "/products" },
     cta2: { label: "Schedule a Demo", href: "/booking" },
-    overlay: "from-[#0D1421]/92 via-[#0D1421]/65 to-transparent",
     stat: { val: "15+", label: "Countries Live" },
+    tag: "Gotecx POS",
+    color: "#6DBE45",
   },
   {
     img: heroImg,
@@ -132,10 +136,11 @@ const heroSlides = [
     heading: ["Infrastructure", "That Never", "Sleeps"],
     accent: "Sleeps",
     sub: "Multi-cloud architecture, zero-downtime migrations, Kubernetes orchestration, and 24/7 monitoring — built for 99.9% uptime SLA.",
-    cta1: { label: "Cloud Solutions", href: "/solutions#cloud" },
+    cta1: { label: "Cloud Solutions", href: "/solutions" },
     cta2: { label: "Get a Proposal", href: "/contact" },
-    overlay: "from-[#060D18]/92 via-[#0D1421]/65 to-transparent",
     stat: { val: "99.9%", label: "Uptime SLA" },
+    tag: "Cloud",
+    color: "#5AB83A",
   },
   {
     img: teamImg,
@@ -145,34 +150,40 @@ const heroSlides = [
     sub: "Born from a mission to bring world-class technology to every organization — regardless of geography. From Monrovia to the world.",
     cta1: { label: "Our Story", href: "/about" },
     cta2: { label: "Book Consultation", href: "/booking" },
-    overlay: "from-[#0D1421]/90 via-[#0D1421]/60 to-transparent",
     stat: { val: "98%", label: "Client Satisfaction" },
+    tag: "Our Mission",
+    color: "#7ED321",
   },
 ];
 
-const SLIDE_DURATION = 6000;
+const SLIDE_DURATION = 6500;
 
 function HeroSlider() {
   const [active, setActive] = useState(0);
+  const [prev, setPrev]   = useState<number | null>(null);
+  const [dir, setDir]     = useState(1); // 1 = forward, -1 = backward
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const total = heroSlides.length;
 
-  const goto = useCallback((idx: number) => {
-    setActive(((idx % total) + total) % total);
+  const goto = useCallback((idx: number, direction = 1) => {
+    const next = ((idx % total) + total) % total;
+    setPrev(active);
+    setDir(direction);
+    setActive(next);
     setProgress(0);
-  }, [total]);
+  }, [active, total]);
 
   useEffect(() => {
     if (paused) return;
-    timerRef.current = setInterval(() => goto(active + 1), SLIDE_DURATION);
+    timerRef.current    = setInterval(() => goto(active + 1, 1), SLIDE_DURATION);
     progressRef.current = setInterval(() => {
-      setProgress(p => Math.min(p + (100 / (SLIDE_DURATION / 80)), 100));
-    }, 80);
+      setProgress(p => Math.min(p + (100 / (SLIDE_DURATION / 60)), 100));
+    }, 60);
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      if (timerRef.current)    clearInterval(timerRef.current);
       if (progressRef.current) clearInterval(progressRef.current);
     };
   }, [active, paused, goto]);
@@ -181,67 +192,152 @@ function HeroSlider() {
 
   return (
     <section
-      className="relative h-screen min-h-[600px] flex items-end overflow-hidden bg-[#0D1421]"
+      className="relative h-screen min-h-[680px] overflow-hidden bg-[#060c17] flex items-center"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* ── Background image with Ken Burns zoom-out ── */}
+      {/* ── Full-bleed background with Ken Burns ── */}
       <AnimatePresence mode="sync">
         <motion.div
           key={`bg-${active}`}
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${slide.img})` }}
-          initial={{ scale: 1.12, opacity: 0 }}
+          initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1.0, opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ scale: { duration: 7, ease: "linear" }, opacity: { duration: 0.9 } }}
+          exit={{ scale: 0.98, opacity: 0 }}
+          transition={{ scale: { duration: 8, ease: "linear" }, opacity: { duration: 1.1 } }}
         />
       </AnimatePresence>
 
-      {/* Base dark layer — ensures image never bleeds through too bright */}
-      <div className="absolute inset-0 bg-[#0a0f1a]/70" />
-      {/* Strong left-to-right gradient — text zone (left) is nearly opaque */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#060c17]/98 via-[#0D1421]/80 to-[#0D1421]/25" />
-      {/* Vertical vignette — darkens top + bottom edges */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0D1421]/60 via-transparent to-[#0D1421]/50" />
-      {/* Bottom solid fade to page bg */}
-      <div className="absolute bottom-0 left-0 right-0 h-52 bg-gradient-to-t from-[#0D1421] via-[#0D1421]/70 to-transparent" />
-      {/* Subtle grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.18]" style={{ backgroundImage: "repeating-linear-gradient(rgba(109,190,69,0.06) 0 1px, transparent 1px 80px), repeating-linear-gradient(90deg, rgba(109,190,69,0.06) 0 1px, transparent 1px 80px)" }} />
+      {/* ── Layered dark overlays ── */}
+      <div className="absolute inset-0 bg-[#060c17]/75" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#030810]/97 via-[#060c17]/82 to-[#060c17]/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#060c17]/50 via-transparent to-[#060c17]/70" />
+      <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-[#0D1421] to-transparent" />
 
-      {/* ── Content ── */}
-      <div className="relative z-10 container mx-auto px-4 pb-28 md:pb-32 max-w-6xl w-full">
+      {/* ── Grid texture ── */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.12]"
+        style={{ backgroundImage: "repeating-linear-gradient(rgba(109,190,69,0.07) 0 1px,transparent 1px 72px),repeating-linear-gradient(90deg,rgba(109,190,69,0.07) 0 1px,transparent 1px 72px)" }} />
+
+      {/* ── Giant ghost slide number — decorative ── */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`ghost-${active}`}
+          className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none hidden lg:block"
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <span
+            className="text-[22rem] font-black leading-none tracking-tighter"
+            style={{ color: "rgba(109,190,69,0.04)", WebkitTextStroke: "1px rgba(109,190,69,0.07)" }}
+          >
+            {String(active + 1).padStart(2, "0")}
+          </span>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Vertical left accent bar ── */}
+      <div className="absolute left-0 top-0 bottom-0 w-1 hidden lg:block">
+        <div className="absolute inset-0 bg-white/[0.04]" />
+        <motion.div
+          className="absolute top-0 left-0 right-0 bg-gradient-to-b from-primary to-primary/40 origin-top"
+          style={{ scaleY: progress / 100, height: "100%" }}
+          transition={{ ease: "linear" }}
+        />
+      </div>
+
+      {/* ── Right side — floating image card + stat ── */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`card-${active}`}
+          className="absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 z-20 hidden lg:flex flex-col gap-4"
+          initial={{ opacity: 0, x: 50, y: "-50%" }}
+          animate={{ opacity: 1, x: 0, y: "-50%" }}
+          exit={{ opacity: 0, x: 40, y: "-50%" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          {/* Image frame */}
+          <div className="relative w-56 xl:w-64 h-72 xl:h-80 rounded-2xl overflow-hidden border border-white/[0.12] shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+            style={{ boxShadow: `0 0 0 1px rgba(109,190,69,0.2), 0 20px 80px rgba(0,0,0,0.6), 0 0 40px rgba(109,190,69,0.08)` }}>
+            <img src={slide.img} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#060c17]/80 via-transparent to-transparent" />
+            {/* Tag pill */}
+            <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#060c17]/70 border border-primary/30 backdrop-blur-md">
+              <span className="text-primary text-[10px] font-bold uppercase tracking-widest">{slide.tag}</span>
+            </div>
+            {/* Bottom name */}
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <div className="text-white/50 text-[10px] uppercase tracking-widest font-bold">Gotecx Platform</div>
+            </div>
+          </div>
+
+          {/* Stat card */}
+          <div className="rounded-xl bg-[#0D1421]/70 border border-primary/25 backdrop-blur-md px-5 py-4 text-center"
+            style={{ boxShadow: "0 4px 30px rgba(109,190,69,0.1)" }}>
+            <div className="text-3xl font-black text-primary mb-0.5">{slide.stat.val}</div>
+            <div className="text-[10px] text-white/45 font-bold uppercase tracking-wider">{slide.stat.label}</div>
+          </div>
+
+          {/* Vertical slide timeline */}
+          <div className="flex flex-col gap-1.5 items-center pt-1">
+            {heroSlides.map((s, i) => (
+              <button
+                key={i}
+                onClick={() => goto(i, i > active ? 1 : -1)}
+                className={`transition-all duration-300 rounded-full ${i === active ? "w-1.5 h-8 bg-primary" : "w-1 h-2 bg-white/20 hover:bg-white/50"}`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Main content ── */}
+      <div className="relative z-10 container mx-auto px-6 lg:px-8 max-w-6xl w-full pt-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={`content-${active}`}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.65, ease: "easeOut" }}
-            className="max-w-3xl"
+            className="max-w-2xl xl:max-w-3xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
           >
             {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/15 border border-primary/35 text-primary text-xs font-bold tracking-wider mb-6 uppercase"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05, duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-primary/12 border border-primary/30 text-primary text-[11px] font-bold tracking-widest mb-8 uppercase backdrop-blur-sm"
             >
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
               {slide.badge}
             </motion.div>
 
-            {/* Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-black tracking-tight text-white leading-[1.05] mb-6">
-              {slide.heading.map((line, i) => (
+            {/* Heading — word-by-word stagger */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-black tracking-tight text-white leading-[1.0] mb-7">
+              {slide.heading.map((line, li) => (
                 <motion.span
-                  key={i}
-                  className={`block ${line === slide.accent ? "text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#8ED44F] to-[#5AB83A]" : ""}`}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.1, duration: 0.55 }}
+                  key={`${active}-line-${li}`}
+                  className={`block ${line === slide.accent
+                    ? "text-transparent bg-clip-text bg-gradient-to-r from-[#7ED321] via-primary to-[#5AB83A]"
+                    : ""}`}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + li * 0.13, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                  {line}
+                  {line === slide.accent && (
+                    <span className="relative">
+                      <span className="absolute -inset-x-2 -inset-y-1 rounded-lg bg-primary/5 blur-xl" />
+                      {line}
+                    </span>
+                  )}
+                  {line !== slide.accent && line}
                 </motion.span>
               ))}
             </h1>
@@ -250,31 +346,34 @@ function HeroSlider() {
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45, duration: 0.55 }}
-              className="text-lg md:text-xl text-white/65 mb-8 max-w-xl leading-relaxed"
+              transition={{ delay: 0.5, duration: 0.55 }}
+              className="text-lg text-white/60 mb-9 max-w-lg leading-relaxed"
             >
               {slide.sub}
             </motion.p>
 
             {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55, duration: 0.5 }}
-              className="flex flex-wrap gap-3 mb-8"
+              transition={{ delay: 0.62, duration: 0.5 }}
+              className="flex flex-wrap gap-3 mb-10"
             >
               <Link href={slide.cta1.href}>
-                <button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-3.5 font-bold shadow-[0_0_28px_rgba(109,190,69,0.4)] text-base transition-all hover:shadow-[0_0_40px_rgba(109,190,69,0.55)] flex items-center gap-2">
-                  {slide.cta1.label} <ArrowRight className="w-4 h-4" />
+                <button className="group relative bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-3.5 font-bold text-[15px] transition-all flex items-center gap-2 overflow-hidden"
+                  style={{ boxShadow: "0 0 30px rgba(109,190,69,0.45), 0 4px 15px rgba(0,0,0,0.3)" }}>
+                  <span className="relative z-10">{slide.cta1.label}</span>
+                  <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-[#7ED321] to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
               </Link>
               <Link href={slide.cta2.href}>
-                <button className="border border-white/25 text-white hover:bg-white/10 rounded-full px-8 py-3.5 font-semibold text-base transition-colors backdrop-blur-sm bg-white/5">
+                <button className="border border-white/20 text-white hover:border-primary/60 hover:text-primary rounded-full px-8 py-3.5 font-semibold text-[15px] transition-all backdrop-blur-sm bg-white/[0.04]">
                   {slide.cta2.label}
                 </button>
               </Link>
               <Link href="/booking">
-                <button className="border border-primary/40 text-primary hover:bg-primary/10 rounded-full px-6 py-3.5 font-semibold text-sm transition-colors flex items-center gap-2">
+                <button className="border border-primary/35 text-primary hover:bg-primary/10 rounded-full px-6 py-3.5 font-semibold text-sm transition-all flex items-center gap-2 backdrop-blur-sm">
                   <Calendar className="w-4 h-4" /> Book Consultation
                 </button>
               </Link>
@@ -284,12 +383,16 @@ function HeroSlider() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="flex flex-wrap items-center gap-5"
+              transition={{ delay: 0.78, duration: 0.5 }}
+              className="flex flex-wrap items-center gap-6"
             >
-              {[{ icon: CheckCircle2, label: "500+ Projects" }, { icon: Globe2, label: "15+ Countries" }, { icon: Award, label: "98% Satisfaction" }].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-2 text-white/45 text-sm font-medium">
-                  <Icon className="w-4 h-4 text-primary" /> {label}
+              {[
+                { icon: CheckCircle2, label: "500+ Projects" },
+                { icon: Globe2,       label: "15+ Countries" },
+                { icon: Award,        label: "98% Satisfaction" },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2 text-white/40 text-sm font-medium">
+                  <Icon className="w-4 h-4 text-primary/70" /> {label}
                 </div>
               ))}
             </motion.div>
@@ -297,62 +400,68 @@ function HeroSlider() {
         </AnimatePresence>
       </div>
 
-      {/* ── Slide counter stat (top-right) ── */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`stat-${active}`}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 30 }}
-          transition={{ duration: 0.5 }}
-          className="absolute top-1/2 right-8 -translate-y-1/2 hidden lg:flex flex-col items-center text-center z-20"
-        >
-          <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/10 backdrop-blur-md">
-            <div className="text-3xl font-black text-primary mb-1">{slide.stat.val}</div>
-            <div className="text-[11px] text-white/45 font-bold uppercase tracking-wider">{slide.stat.label}</div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* ── Left / Right arrows ── */}
+      {/* ── Prev / Next arrows ── */}
       <button
-        onClick={() => goto(active - 1)}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition-all backdrop-blur-sm"
-        aria-label="Previous"
+        onClick={() => goto(active - 1, -1)}
+        className="absolute left-4 lg:left-8 bottom-10 z-20 w-11 h-11 rounded-full bg-white/[0.07] hover:bg-primary/20 border border-white/12 hover:border-primary/50 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+        aria-label="Previous slide"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
       <button
-        onClick={() => goto(active + 1)}
-        className="absolute right-4 lg:right-24 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition-all backdrop-blur-sm"
-        aria-label="Next"
+        onClick={() => goto(active + 1, 1)}
+        className="absolute left-[4.5rem] lg:left-24 bottom-10 z-20 w-11 h-11 rounded-full bg-white/[0.07] hover:bg-primary/20 border border-white/12 hover:border-primary/50 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+        aria-label="Next slide"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* ── Slide dots + progress ── */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3">
-        <div className="flex items-center gap-2.5">
-          {heroSlides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goto(i)}
-              className={`transition-all duration-300 rounded-full ${i === active ? "w-8 h-2 bg-primary" : "w-2 h-2 bg-white/30 hover:bg-white/60"}`}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-        {/* Progress bar */}
-        <div className="w-40 h-[2px] bg-white/15 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-primary rounded-full origin-left"
-            style={{ scaleX: progress / 100 }}
-            transition={{ ease: "linear" }}
-          />
-        </div>
-        {/* Slide count */}
-        <span className="text-[10px] text-white/35 font-bold tracking-widest uppercase">{active + 1} / {total}</span>
+      {/* ── Bottom: numbered tabs + progress ── */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goto(i, i > active ? 1 : -1)}
+            aria-label={`Slide ${i + 1}`}
+            className={`relative overflow-hidden transition-all duration-400 rounded-full font-bold text-[10px] flex items-center justify-center ${
+              i === active
+                ? "w-10 h-7 bg-primary text-white shadow-[0_0_14px_rgba(109,190,69,0.5)]"
+                : "w-7 h-7 bg-white/[0.08] border border-white/12 text-white/40 hover:bg-white/15"
+            }`}
+          >
+            {i === active ? (
+              <>
+                <motion.div
+                  className="absolute inset-0 bg-primary/40 origin-left"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: progress / 100 }}
+                  transition={{ ease: "linear" }}
+                />
+                <span className="relative z-10">{String(i + 1).padStart(2, "0")}</span>
+              </>
+            ) : (
+              String(i + 1).padStart(2, "0")
+            )}
+          </button>
+        ))}
       </div>
+
+      {/* ── Mobile stat (shown only on small screens) ── */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`mstat-${active}`}
+          className="absolute top-6 right-4 z-20 lg:hidden"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.85 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="px-4 py-2.5 rounded-xl bg-[#0D1421]/80 border border-primary/25 backdrop-blur-md text-center">
+            <div className="text-xl font-black text-primary">{slide.stat.val}</div>
+            <div className="text-[9px] text-white/40 font-bold uppercase tracking-wider">{slide.stat.label}</div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 }
