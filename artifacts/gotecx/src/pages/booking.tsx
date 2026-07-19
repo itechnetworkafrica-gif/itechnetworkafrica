@@ -45,7 +45,15 @@ const empty: FormState = {
   company: "", service: "", date: "", time: "", message: "",
 };
 
+import { useSEO } from "@/components/SEOHead";
 export default function Booking() {
+  useSEO({
+    title: "Book a Demo",
+    description: "Schedule a personalized Gotecx platform demo. See how our intelligent technology solutions can transform your business.",
+    canonical: "/booking",
+  });
+
+
   const [form, setForm] = useState<FormState>(empty);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<FormState>>({});

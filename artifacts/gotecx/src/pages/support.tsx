@@ -4,7 +4,15 @@ import { Search, Book, Wrench, LifeBuoy, AlertCircle, ArrowRight } from "lucide-
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Support() {
+  useSEO({
+    title: "Support",
+    description: "Gotecx customer support center. Technical help, ticket tracking, documentation, and 24/7 support team access.",
+    canonical: "/support",
+  });
+
+
   return (
     <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white">

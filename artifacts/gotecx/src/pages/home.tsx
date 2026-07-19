@@ -16,7 +16,8 @@ import posImg from "@assets/generated_images/modern_retail_point_of_6ff3.png";
 import founderImg from "@assets/1777816891225_1784147053274.png";
 
 /* ─── animated counter ─────────────────────────── */
-function Counter({ to, suffix = "", prefix = "" }: { to: number; suffix?: string; prefix?: string }) {
+function Counter({
+ to, suffix = "", prefix = "" }: { to: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
@@ -356,7 +357,13 @@ function HeroSlider() {
   );
 }
 
+import { useSEO } from "@/components/SEOHead";
 export default function Home() {
+  useSEO({
+    description: "Gotecx empowers businesses worldwide to automate, innovate, transform, and scale with intelligent technology solutions. Enterprise software, cloud, AI, and cybersecurity.",
+    canonical: "/",
+  });
+
   return (
     <div className="w-full bg-background overflow-hidden">
 

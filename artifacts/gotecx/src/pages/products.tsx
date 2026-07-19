@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { CreditCard, Cpu, BarChart3, Cloud, Layers, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Products() {
+  useSEO({
+    title: "Products",
+    description: "Discover Gotecx's enterprise product portfolio — cloud platforms, AI tools, security suites, and business management systems.",
+    canonical: "/products",
+  });
+
+
   return (
     <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white">

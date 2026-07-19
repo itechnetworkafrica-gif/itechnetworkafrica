@@ -1,6 +1,14 @@
 import React from "react";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Privacy() {
+  useSEO({
+    title: "Privacy Policy",
+    description: "Gotecx Privacy Policy — how we collect, use, and protect your personal data in compliance with global privacy regulations.",
+    canonical: "/privacy",
+  });
+
+
   return (
     <div className="w-full py-24 bg-background">
       <div className="container mx-auto px-4 max-w-4xl">

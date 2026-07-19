@@ -4,7 +4,15 @@ import { ArrowUpRight, TrendingUp, ShieldCheck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
+import { useSEO } from "@/components/SEOHead";
 export default function SuccessStories() {
+  useSEO({
+    title: "Success Stories",
+    description: "See how Gotecx has transformed businesses worldwide. Real case studies, measurable outcomes, and client testimonials.",
+    canonical: "/success-stories",
+  });
+
+
   const stories = [
     {
       company: "Aura Retail Group",

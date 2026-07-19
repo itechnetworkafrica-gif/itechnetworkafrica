@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { Building2, Cloud, Cpu, Shield, LineChart, Zap, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Solutions() {
+  useSEO({
+    title: "Solutions",
+    description: "Explore Gotecx's full suite of enterprise technology solutions: cloud infrastructure, AI automation, cybersecurity, and digital transformation.",
+    canonical: "/solutions",
+  });
+
+
   const solutions = [
     { id: "enterprise", title: "Enterprise Solutions", desc: "Scalable platforms engineered for large organizations requiring complex operational management.", icon: Building2 },
     { id: "cloud", title: "Cloud Infrastructure", desc: "Secure, reliable, and highly available hosting services optimized for global scale.", icon: Cloud },

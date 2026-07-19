@@ -223,7 +223,15 @@ const stagger = {
   show: { transition: { staggerChildren: 0.07 } },
 };
 
+import { useSEO } from "@/components/SEOHead";
 export default function Services() {
+  useSEO({
+    title: "Services",
+    description: "Gotecx delivers world-class technology services: consulting, implementation, managed services, training, and 24/7 support.",
+    canonical: "/services",
+  });
+
+
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (

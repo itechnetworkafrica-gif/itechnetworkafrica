@@ -24,7 +24,15 @@ const milestones = [
   { year: "2026", title: "Global Ecosystem", desc: "Building the complete Gotecx technology ecosystem for worldwide deployment." },
 ];
 
+import { useSEO } from "@/components/SEOHead";
 export default function About() {
+  useSEO({
+    title: "About Us",
+    description: "Learn about Gotecx — our mission, values, and leadership. A global technology company powered by iTech Network Africa.",
+    canonical: "/about",
+  });
+
+
   return (
     <div className="w-full bg-background overflow-hidden">
 

@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Blog() {
+  useSEO({
+    title: "Blog",
+    description: "Insights and thought leadership from the Gotecx team on enterprise technology, AI, cloud, and cybersecurity.",
+    canonical: "/blog",
+  });
+
+
   const posts = [
     { title: "The Future of AI in Enterprise Business", category: "Technology", date: "Oct 12, 2026", author: "Kerkulah Kerkulah" },
     { title: "Scaling Operations with Gotecx POS", category: "Product", date: "Sep 28, 2026", author: "Product Team" },

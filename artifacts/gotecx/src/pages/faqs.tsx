@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Faqs() {
+  useSEO({
+    title: "FAQs",
+    description: "Frequently asked questions about Gotecx products, services, pricing, and support.",
+    canonical: "/faqs",
+  });
+
+
   const faqs = [
     {
       q: "What makes Gotecx POS different from other systems?",

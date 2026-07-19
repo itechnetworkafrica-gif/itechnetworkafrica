@@ -2,7 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Terminal, Code2, Database, Shield, ChevronRight } from "lucide-react";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Docs() {
+  useSEO({
+    title: "Documentation",
+    description: "Gotecx technical documentation, API references, integration guides, and developer resources.",
+    canonical: "/docs",
+  });
+
+
   return (
     <div className="w-full flex h-[calc(100vh-80px)] overflow-hidden bg-background">
       {/* Docs Sidebar */}

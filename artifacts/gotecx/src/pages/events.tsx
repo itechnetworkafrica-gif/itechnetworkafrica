@@ -78,7 +78,8 @@ type RegistrationForm = {
 };
 const emptyForm: RegistrationForm = { firstName: "", lastName: "", email: "", phone: "", org: "", role: "" };
 
-function RegistrationFormPanel({ event, onClose }: { event: typeof events[0]; onClose: () => void }) {
+function RegistrationFormPanel({
+ event, onClose }: { event: typeof events[0]; onClose: () => void }) {
   const [form, setForm] = useState<RegistrationForm>(emptyForm);
   const [errors, setErrors] = useState<Partial<RegistrationForm>>({});
   const [done, setDone] = useState(false);
@@ -200,7 +201,14 @@ function RegistrationFormPanel({ event, onClose }: { event: typeof events[0]; on
   );
 }
 
+import { useSEO } from "@/components/SEOHead";
 export default function Events() {
+  useSEO({
+    title: "Events",
+    description: "Discover upcoming Gotecx events, conferences, webinars, and industry summits. Connect with our global technology community.",
+    canonical: "/events",
+  });
+
   const [openForm, setOpenForm] = useState<string | null>(null);
 
   const toggle = (id: string) => setOpenForm(prev => (prev === id ? null : id));

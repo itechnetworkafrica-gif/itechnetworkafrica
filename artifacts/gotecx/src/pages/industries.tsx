@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { ShoppingCart, Stethoscope, GraduationCap, Building2, HeartHandshake, Utensils, Factory, Landmark, Radio, Truck, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Industries() {
+  useSEO({
+    title: "Industries",
+    description: "Gotecx serves banking, healthcare, retail, government, education, manufacturing, and telecommunications with tailored technology solutions.",
+    canonical: "/industries",
+  });
+
+
   const industries = [
     { id: "retail", name: "Retail & E-commerce", icon: ShoppingCart, desc: "Omnichannel point of sale, inventory management, and personalized customer experiences." },
     { id: "healthcare", name: "Healthcare", icon: Stethoscope, desc: "Secure patient data systems, telemedicine infrastructure, and clinic management." },

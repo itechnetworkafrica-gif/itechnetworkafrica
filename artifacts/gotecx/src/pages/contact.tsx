@@ -33,7 +33,15 @@ const empty: FormState = {
 
 type Status = "idle" | "loading" | "success" | "error";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Contact() {
+  useSEO({
+    title: "Contact Us",
+    description: "Get in touch with Gotecx. Phone: +231 776 836 689 | Email: itechnetworkafrica@gmail.com.",
+    canonical: "/contact",
+  });
+
+
   const [form, setForm] = useState<FormState>(empty);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");

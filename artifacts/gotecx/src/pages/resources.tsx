@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { BookOpen, FileText, Video, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Resources() {
+  useSEO({
+    title: "Resources",
+    description: "Access Gotecx's library of whitepapers, guides, webinars, and technical resources to accelerate your digital transformation.",
+    canonical: "/resources",
+  });
+
+
   return (
     <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white text-center">

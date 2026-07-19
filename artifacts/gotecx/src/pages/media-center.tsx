@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { Download, FileImage, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { useSEO } from "@/components/SEOHead";
 export default function MediaCenter() {
+  useSEO({
+    title: "Media Center",
+    description: "Gotecx press releases, news, and company announcements. Stay informed about the Gotecx Global Technology Platform.",
+    canonical: "/media-center",
+  });
+
+
   return (
     <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white">

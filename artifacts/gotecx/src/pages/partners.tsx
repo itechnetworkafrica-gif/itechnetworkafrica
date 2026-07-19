@@ -4,7 +4,15 @@ import { ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import itechLogo from "@assets/file_000000007fdc72438ace4a48fe9c5139_1781449108190.png";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Partners() {
+  useSEO({
+    title: "Partners",
+    description: "Gotecx partners with world-leading technology organizations. Explore our partner ecosystem and alliance programs.",
+    canonical: "/partners",
+  });
+
+
   return (
     <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white">

@@ -2,7 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, Users, Globe2, Building } from "lucide-react";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Investors() {
+  useSEO({
+    title: "Investors",
+    description: "Investor information, financial reporting, and corporate governance for Gotecx — a high-growth global technology platform.",
+    canonical: "/investors",
+  });
+
+
   return (
     <div className="w-full bg-background">
       <section className="py-24 bg-[#0D1421] text-white">

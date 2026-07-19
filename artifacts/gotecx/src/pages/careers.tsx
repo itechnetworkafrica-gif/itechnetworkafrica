@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { Briefcase, MapPin, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Careers() {
+  useSEO({
+    title: "Careers",
+    description: "Join the Gotecx team. Open positions in technology, engineering, sales, and operations at a fast-growing global tech company.",
+    canonical: "/careers",
+  });
+
+
   const jobs = [
     { title: "Senior React Engineer", dept: "Engineering", location: "Remote (Global)", type: "Full-time" },
     { title: "Cloud Infrastructure Architect", dept: "Infrastructure", location: "Monrovia, Liberia", type: "Full-time" },

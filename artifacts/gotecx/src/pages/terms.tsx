@@ -1,6 +1,14 @@
 import React from "react";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Terms() {
+  useSEO({
+    title: "Terms of Service",
+    description: "Gotecx Terms of Service — the legal agreement governing use of the Gotecx platform and related services.",
+    canonical: "/terms",
+  });
+
+
   return (
     <div className="w-full py-24 bg-background">
       <div className="container mx-auto px-4 max-w-4xl">

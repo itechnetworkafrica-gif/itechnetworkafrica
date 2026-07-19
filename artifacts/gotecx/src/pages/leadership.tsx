@@ -5,7 +5,15 @@ import { Link } from "wouter";
 import founderImg from "@assets/1777816891225_1784147053274.png";
 import teamImg from "@assets/generated_images/diverse_multicultural_tech_team_1341.png";
 
+import { useSEO } from "@/components/SEOHead";
 export default function Leadership() {
+  useSEO({
+    title: "Leadership",
+    description: "Meet the Gotecx leadership team — experienced technology executives driving innovation and digital transformation globally.",
+    canonical: "/leadership",
+  });
+
+
   return (
     <div className="w-full bg-background overflow-hidden">
 
