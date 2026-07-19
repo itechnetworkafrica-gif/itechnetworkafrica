@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Gotecx Global Technology Platform"
+version = "1.0.0"
+id = "artifacts/gotecx"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21870
+
+[services.development]
+run = "pnpm --filter @workspace/gotecx run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/gotecx", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/gotecx/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21870"
+BASE_PATH = "/"

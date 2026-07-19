@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background: Gotecx dark navy -->
+  <rect width="512" height="512" rx="80" fill="#1A2035"/>
+  <!-- G letterform in brand green gradient -->
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7ED321"/>
+      <stop offset="100%" style="stop-color:#2D5F3F"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer arc of G -->
+  <path d="M256 80
+    C158 80 80 158 80 256
+    C80 354 158 432 256 432
+    C338 432 408 378 428 304
+    L428 256 L256 256 L256 304 L372 304
+    C352 354 308 384 256 384
+    C185 384 128 327 128 256
+    C128 185 185 128 256 128
+    C294 128 328 144 352 170
+    L388 134
+    C356 100 308 80 256 80 Z"
+    fill="url(#g1)"/>
+  <!-- Circuit dot accents -->
+  <circle cx="200" cy="330" r="8" fill="#6DBE45" opacity="0.8"/>
+  <circle cx="170" cy="300" r="6" fill="#6DBE45" opacity="0.6"/>
+  <circle cx="155" cy="260" r="5" fill="#6DBE45" opacity="0.5"/>
+</svg>
