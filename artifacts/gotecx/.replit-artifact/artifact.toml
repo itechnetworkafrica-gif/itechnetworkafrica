@@ -7,16 +7,18 @@ router = "path"
 
 [[services]]
 name = "web"
-paths = [ "/" ]
+paths = ["/"]
 localPort = 21870
 
 [services.development]
 run = "pnpm --filter @workspace/gotecx run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/gotecx", "run", "build" ]
 serve = "static"
 publicDir = "artifacts/gotecx/dist/public"
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/gotecx", "run", "build"]
 
 [[services.production.rewrites]]
 from = "/*"
