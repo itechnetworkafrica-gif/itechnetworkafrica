@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X, MessageCircle, Send, ArrowRight,
-  Tag, Calendar, Headphones, Layers, Users2, Zap
+  Tag, Calendar, Headphones
 } from "lucide-react";
 
 const PHONE = "231776836689";
@@ -12,37 +12,19 @@ const quickReplies = [
     icon: Tag,
     label: "Get a Quote",
     sublabel: "Request pricing for a project",
-    message: "Hi Gotecx! I'd like to get a quote for a technology project. Can you help me?",
+    message: "Hi iTech Network Africa! I'd like to get a quote for a technology project. Can you help me?",
   },
   {
     icon: Calendar,
     label: "Book a Demo",
     sublabel: "See our products in action",
-    message: "Hi Gotecx! I'd like to book a product demo. When are you available?",
+    message: "Hi iTech Network Africa! I'd like to book a product demo. When are you available?",
   },
   {
     icon: Headphones,
     label: "Talk to Support",
     sublabel: "Get help with an existing service",
-    message: "Hi Gotecx! I need support with an existing service or product.",
-  },
-  {
-    icon: Layers,
-    label: "Learn About Services",
-    sublabel: "Explore what we offer",
-    message: "Hi Gotecx! I'd like to learn more about your technology services.",
-  },
-  {
-    icon: Users2,
-    label: "Partnership Enquiry",
-    sublabel: "Explore partner opportunities",
-    message: "Hi Gotecx! I'm interested in exploring a partnership or reseller opportunity.",
-  },
-  {
-    icon: Zap,
-    label: "Request a Proposal",
-    sublabel: "Get a tailored proposal",
-    message: "Hi Gotecx! I'd like to request a formal proposal for a project.",
+    message: "Hi iTech Network Africa! I need support with an existing service or product.",
   },
 ];
 
@@ -245,7 +227,7 @@ export function LiveChat() {
         transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 20 }}
         whileHover={{ scale: 1.07 }}
         whileTap={{ scale: 0.93 }}
-        className="fixed bottom-5 right-5 z-50 w-[3.5rem] h-[3.5rem] rounded-full flex items-center justify-center shadow-[0_8px_28px_rgba(109,190,69,0.5)] relative"
+        className="fixed bottom-6 right-5 z-[9999] w-[3.5rem] h-[3.5rem] rounded-full flex items-center justify-center shadow-[0_8px_28px_rgba(109,190,69,0.5)] relative"
         style={{ background: "linear-gradient(140deg, #7ed321 0%, #6DBE45 45%, #4a9e2e 100%)" }}
         aria-label={open ? "Close chat" : "Open chat"}
       >

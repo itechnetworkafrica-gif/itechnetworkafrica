@@ -553,7 +553,7 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className={`group relative p-7 rounded-2xl border border-border hover:border-primary/50 bg-background bg-gradient-to-br ${s.color} transition-all hover:shadow-xl hover:-translate-y-1 cursor-pointer`}
+                className={`group relative p-7 rounded-2xl border border-border hover:border-primary/50 bg-background bg-gradient-to-br ${s.color} transition-all hover:shadow-xl hover:-translate-y-1 cursor-pointer${i >= 3 ? " hidden md:block" : ""}`}
               >
                 <div className="w-12 h-12 bg-background border border-border rounded-xl flex items-center justify-center mb-5 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all">
                   <s.icon className="w-5 h-5 text-primary" />
