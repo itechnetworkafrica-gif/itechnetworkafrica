@@ -168,7 +168,7 @@ function HeroSlider() {
 
   return (
     <section
-      className="relative h-screen min-h-[700px] overflow-hidden bg-[#060c17] flex items-center"
+      className="relative min-h-[100svh] min-h-[700px] overflow-hidden bg-[#060c17] flex items-center"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -188,7 +188,7 @@ function HeroSlider() {
       {/* ── Layered overlays for depth and readability ── */}
       <div className="absolute inset-0 bg-[#060c17]/70" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#030810]/95 via-[#060c17]/70 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#060c17]/80 via-transparent to-[#060c17]/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#060c17] via-transparent to-[#060c17]/30" />
 
       {/* ── Subtle grid texture ── */}
       <div
@@ -211,7 +211,7 @@ function HeroSlider() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 pt-24">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 pt-24 pb-28 lg:pb-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={`content-${active}`}
@@ -371,7 +371,7 @@ export default function Home() {
       <HeroSlider />
 
       {/* ── SCROLLING TICKER ─────────────────────────────── */}
-      <div className="bg-[#0B111E] border-y border-white/[0.07] py-0 overflow-hidden">
+      <div className="bg-[#0B111E] border-y border-white/[0.15] py-0 overflow-hidden">
         {/* Row 1 — scrolls left */}
         <div className="relative flex overflow-x-hidden border-b border-white/[0.05]">
           <motion.div

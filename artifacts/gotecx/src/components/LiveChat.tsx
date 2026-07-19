@@ -57,11 +57,11 @@ export function LiveChat() {
   const [customMsg, setCustomMsg] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  /* Greeting bubble appears after 4 s, hides once opened or dismissed */
+  /* Greeting bubble appears after 9 s, hides once opened or dismissed */
   useEffect(() => {
     const t = setTimeout(() => {
       if (!open && !dismissed) setShowGreeting(true);
-    }, 4000);
+    }, 9000);
     return () => clearTimeout(t);
   }, []);
 

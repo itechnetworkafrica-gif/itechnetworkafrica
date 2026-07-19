@@ -11,20 +11,6 @@ import { useSEO } from "@/components/SEOHead";
 /* ─── Team data ─────────────────────────────────── */
 const team = [
   {
-    name:  "Wilmot Kerkulah",
-    role:  "Founder & Executive Director",
-    org:   "iTech Network Africa · Gotecx",
-    img:   founderImg,
-    bio:   "Visionary founder who built Gotecx from Monrovia, Liberia into a global technology platform serving 15+ countries.",
-    featured: true,
-    social: [
-      { icon: Linkedin, label: "LinkedIn",  href: "#",  color: "#0A66C2" },
-      { icon: Twitter,  label: "Twitter",   href: "#",  color: "#1DA1F2" },
-      { icon: Mail,     label: "Email",     href: "mailto:itechnetworkafrica@gmail.com", color: "#6DBE45" },
-      { icon: Globe,    label: "Website",   href: "#",  color: "#8ED44F" },
-    ],
-  },
-  {
     name:  "Foday Kabah",
     role:  "Full Stack Developer",
     org:   "Gotecx Engineering",
