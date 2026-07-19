@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "wouter";
-import gotecxLogo from "@assets/file_0000000069c471f4b1db489ae2ff9c8b_1781449096936.png";
 import itechLogo from "@assets/file_000000007fdc72438ace4a48fe9c5139_1781449108190.png";
 import {
   Facebook, Twitter, Linkedin, Instagram, Youtube,
@@ -136,7 +135,7 @@ export function Footer() {
         <div className="container mx-auto px-4 max-w-6xl flex flex-col lg:flex-row items-center justify-between gap-7">
           <div>
             <h3 className="text-2xl md:text-3xl font-bold mb-1.5">Ready to Transform Your Business?</h3>
-            <p className="text-white/50 max-w-lg text-sm">Join hundreds of organizations powered by Gotecx and iTech Network Africa.</p>
+            <p className="text-white/50 max-w-lg text-sm">Join hundreds of organizations powered by iTech Network Africa and our flagship platform, Gotecx.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
             <Link href="/contact">
@@ -157,10 +156,11 @@ export function Footer() {
       <div className="lg:hidden">
         {/* Brand header */}
         <div className="px-4 pt-10 pb-6 border-b border-white/[0.07]">
-          <div className="flex items-center gap-4 mb-5">
-            <img src={gotecxLogo} alt="Gotecx" className="h-9 w-auto" />
-            <div className="h-9 w-px bg-white/15" />
-            <img src={itechLogo} alt="iTech Network Africa" className="h-10 w-auto" />
+          <div className="mb-4">
+            <img src={itechLogo} alt="iTech Network Africa" className="h-10 w-auto mb-3" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/15 border border-primary/25 text-primary text-[10px] font-bold uppercase tracking-widest">
+              Powered by Gotecx · Our Flagship Platform
+            </span>
           </div>
           <p className="text-white/45 text-xs leading-relaxed">
             Building the Future Through Technology · Founded in Monrovia, Liberia
@@ -212,7 +212,7 @@ export function Footer() {
             ))}
           </div>
           <p className="text-[11px] text-white/25 uppercase tracking-wide leading-relaxed">
-            GOTECX · ITECH NETWORK AFRICA (PTY)<br />ALL RIGHTS RESERVED. &copy; 2026
+            ITECH NETWORK AFRICA (PTY) · ALL RIGHTS RESERVED. &copy; 2026
           </p>
         </div>
       </div>
@@ -223,13 +223,14 @@ export function Footer() {
           <div className="grid grid-cols-7 gap-10 mb-14">
             {/* Brand col — spans 2 */}
             <div className="col-span-2">
-              <div className="flex items-center gap-4 mb-5">
-                <img src={gotecxLogo} alt="Gotecx" className="h-9 w-auto" />
-                <div className="h-9 w-px bg-white/15" />
-                <img src={itechLogo} alt="iTech Network Africa" className="h-10 w-auto" />
+              <div className="mb-5">
+                <img src={itechLogo} alt="iTech Network Africa" className="h-11 w-auto mb-3" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/15 border border-primary/25 text-primary text-[10px] font-bold uppercase tracking-widest">
+                  Powered by Gotecx · Flagship Platform
+                </span>
               </div>
               <p className="text-white/50 text-sm leading-relaxed mb-5">
-                Gotecx is the flagship global technology brand of iTech Network Africa — delivering world-class software, AI, and digital transformation to organizations worldwide.
+                iTech Network Africa is a global technology company founded in Monrovia, Liberia — delivering world-class software, AI, and digital transformation worldwide through our flagship brand, Gotecx.
               </p>
               <div className="space-y-2.5 text-sm text-white/50 mb-6">
                 <a href="tel:+2317768366689" className="flex items-center gap-2.5 hover:text-primary transition-colors">
@@ -289,7 +290,7 @@ export function Footer() {
               ))}
             </div>
             <p className="text-[11px] text-white/25 uppercase tracking-wide">
-              &copy; 2026 GOTECX · ITECH NETWORK AFRICA (PTY) · ALL RIGHTS RESERVED.
+              &copy; 2026 ITECH NETWORK AFRICA (PTY) · ALL RIGHTS RESERVED.
             </p>
           </div>
         </div>

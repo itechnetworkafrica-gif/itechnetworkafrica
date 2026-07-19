@@ -8,7 +8,7 @@ import {
   Facebook, Instagram, Linkedin, Youtube, Twitter
 } from "lucide-react";
 import { useTheme } from "next-themes";
-import gotecxLogo from "@assets/file_0000000069c471f4b1db489ae2ff9c8b_1781449096936.png";
+import itechLogo from "@assets/file_000000007fdc72438ace4a48fe9c5139_1781449108190.png";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -17,7 +17,7 @@ const NAV_TREE = [
   { id: "home",       label: "Home",       href: "/" },
   {
     id: "about-us", label: "About Us", sub: [
-      { label: "About Gotecx",       href: "/about" },
+      { label: "About iTech Network Africa", href: "/about" },
       { label: "Our Story",          href: "/about#story" },
       { label: "Vision & Mission",   href: "/about#vision" },
       { label: "Core Values",        href: "/about#values" },
@@ -164,7 +164,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
             {currentNode?.label}
           </button>
         ) : (
-          <img src={gotecxLogo} alt="Gotecx" className="h-8 w-auto" />
+          <img src={itechLogo} alt="iTech Network Africa" className="h-8 w-auto" />
         )}
         <div className="flex items-center gap-3">
           <button
@@ -313,7 +313,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
               ))}
             </div>
             <p className="text-[11px] text-white/25 uppercase tracking-wider">
-              &copy; 2026 Gotecx · iTech Network Africa · All Rights Reserved.
+              &copy; 2026 iTech Network Africa · All Rights Reserved.
             </p>
           </motion.div>
         )}
@@ -398,9 +398,9 @@ export function Header() {
 
           {/* Logo */}
           <Link href="/" onClick={closeAll} className="flex-shrink-0 flex flex-col items-start">
-            <img src={gotecxLogo} alt="Gotecx" className="h-9 w-auto" style={{ maxWidth: 140 }} />
-            <span className="text-[9px] text-muted-foreground uppercase tracking-[0.12em] font-semibold mt-0.5 whitespace-nowrap hidden sm:block">
-              Powered by iTech Network Africa
+            <img src={itechLogo} alt="iTech Network Africa" className="h-9 w-auto" style={{ maxWidth: 160 }} />
+            <span className="text-[9px] text-primary/70 uppercase tracking-[0.12em] font-semibold mt-0.5 whitespace-nowrap hidden sm:block">
+              Gotecx · Our Flagship Tech Platform
             </span>
           </Link>
 

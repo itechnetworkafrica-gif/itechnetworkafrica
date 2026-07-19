@@ -46,8 +46,8 @@ const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } };
 
 export default function About() {
   useSEO({
-    title: "About — Gotecx, Flagship Brand of iTech Network Africa",
-    description: "Learn the story behind Gotecx — the flagship technology brand and tech engine of iTech Network Africa. Founded in Liberia, built for the world.",
+    title: "About — iTech Network Africa",
+    description: "Learn the story of iTech Network Africa — a global technology company founded in Monrovia, Liberia, empowering organizations worldwide through our flagship brand, Gotecx.",
     canonical: "/about",
   });
 
@@ -79,9 +79,7 @@ export default function About() {
               </motion.h1>
 
               <motion.p variants={fadeUp} className="text-xl text-white/60 leading-relaxed mb-10 max-w-lg">
-                Founded in Monrovia, Liberia. Powered by iTech Network Africa.
-                Gotecx is the flagship technology brand built to empower businesses
-                everywhere — through innovation, transformation, and intelligent solutions.
+                Founded in Monrovia, Liberia in 2020, iTech Network Africa empowers businesses everywhere through innovation, transformation, and intelligent technology solutions — with <strong className="text-primary font-semibold">Gotecx</strong> as our flagship tech platform.
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-4">

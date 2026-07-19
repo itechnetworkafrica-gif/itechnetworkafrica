@@ -654,10 +654,10 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/6 rounded-full blur-[120px] pointer-events-none" />
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center mb-14">
-            <div className="text-primary font-bold uppercase tracking-widest text-xs mb-4">Why Gotecx</div>
-            <h2 className="text-4xl lg:text-[2.8rem] font-bold mb-4">The Gotecx Advantage</h2>
+            <div className="text-primary font-bold uppercase tracking-widest text-xs mb-4">Why iTech Network Africa</div>
+            <h2 className="text-4xl lg:text-[2.8rem] font-bold mb-4">The iTech Advantage</h2>
             <p className="text-white/55 text-lg max-w-2xl mx-auto">
-              What sets us apart — and why global organizations choose us.
+              What sets us apart — and why global organizations choose iTech Network Africa.
             </p>
           </div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -801,7 +801,7 @@ export default function Home() {
               className="relative"
             >
               <div className="rounded-3xl overflow-hidden border border-border shadow-2xl">
-                <img src={teamImg} alt="Gotecx Team" className="w-full h-auto" />
+                <img src={teamImg} alt="iTech Network Africa Team" className="w-full h-auto" />
               </div>
               <div className="absolute -bottom-5 -left-5 bg-primary rounded-2xl p-5 shadow-xl">
                 <div className="text-white font-black text-2xl">15+</div>
@@ -994,7 +994,7 @@ export default function Home() {
               Transform Your Business<br />With Technology That Scales
             </h2>
             <p className="text-xl text-white/55 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join the global organizations powered by Gotecx and iTech Network Africa.
+              Join the global organizations powered by iTech Network Africa.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link href="/contact">
