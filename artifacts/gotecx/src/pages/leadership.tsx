@@ -201,21 +201,23 @@ export default function Leadership() {
             className="rounded-3xl overflow-hidden border border-border shadow-2xl grid md:grid-cols-5"
           >
             {/* Photo side */}
-            <div className="md:col-span-2 relative min-h-[420px] bg-[#0D1421] overflow-hidden">
-              <img src={founderImg} alt="Wilmot Kerkulah" className="absolute inset-0 w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D1421] via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6">
-                <div className="flex gap-3">
-                  {[
-                    { icon: Linkedin, href: "#" },
-                    { icon: Twitter,  href: "#" },
-                    { icon: Mail,     href: "mailto:itechnetworkafrica@gmail.com" },
-                  ].map(({ icon: Icon, href }, i) => (
-                    <a key={i} href={href}
-                      className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-primary transition-colors">
-                      <Icon className="w-4 h-4 text-white" />
-                    </a>
-                  ))}
+            <div className="md:col-span-2 bg-[#0D1421] overflow-hidden">
+              <div className="relative w-full min-h-[420px] md:h-full">
+                <img src={founderImg} alt="Wilmot Kerkulah" className="absolute inset-0 w-full h-full object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1421] via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-6">
+                  <div className="flex gap-3">
+                    {[
+                      { icon: Linkedin, href: "#" },
+                      { icon: Twitter,  href: "#" },
+                      { icon: Mail,     href: "mailto:itechnetworkafrica@gmail.com" },
+                    ].map(({ icon: Icon, href }, i) => (
+                      <a key={i} href={href}
+                        className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-primary transition-colors">
+                        <Icon className="w-4 h-4 text-white" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
