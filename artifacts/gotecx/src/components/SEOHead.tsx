@@ -7,10 +7,10 @@ interface SEOOptions {
   ogImage?: string;
 }
 
-const SITE_NAME = "Gotecx";
+const SITE_NAME = "Gotecx — Powered by iTech Network Africa";
 const BASE_URL = "https://gotecx.com";
 const DEFAULT_DESCRIPTION =
-  "Gotecx is a global technology platform empowering businesses to automate, innovate, transform, and scale with intelligent technology solutions. Powered by iTech Network Africa.";
+  "Gotecx is the flagship technology brand and tech engine of iTech Network Africa — delivering enterprise software, cloud infrastructure, AI automation, and digital transformation solutions to businesses worldwide. Born in Liberia. Built for the world.";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/opengraph.jpg`;
 
 /**
